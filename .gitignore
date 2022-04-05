@@ -12,6 +12,7 @@
 
 # production
 /build
+/static/react
 
 # misc
 .DS_Store
