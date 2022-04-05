@@ -1,5 +1,5 @@
 import flask
-from flask_login import LoginManager
+from flask_login import LoginManager, login_user, logout_user
 from dotenv import load_dotenv, find_dotenv
 import os
 from models import Users, db
@@ -26,8 +26,49 @@ login_manager.init_app(app)
 
 
 @login_manager.user_loader
-def load_user(id):
-    return Users.query.get(int(id))
+def load_user(user_name):
+    return Users.query.get(user_name)
+
+
+@app.route("/signup")
+def signup():
+    return flask.render_template("signup.html")
+
+
+@app.route("/signup", methods=["POST"])
+def signup_post():
+    username = flask.request.form.get("username")
+    user = Users.query.filter_by(username=username).first()
+    if user:
+        pass
+    else:
+        user = Users(username=username)
+        db.session.add(user)
+        db.session.commit()
+
+    return flask.redirect(flask.url_for("login"))
+
+
+@app.route("/login")
+def login():
+    return flask.render_template("login.html")
+
+
+@app.route("/login", methods=["POST"])
+def login_post():
+    username = flask.request.form.get("username")
+    user = Users.query.filter_by(username=username).first()
+    if user:
+        login_user(user)
+        return flask.redirect(flask.url_for("index"))
+
+    else:
+        return flask.jsonify({"status": 401, "reason": "Username or Password Error"})
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return flask.redirect("login")
 
 
 app.register_blueprint(account_routes)
