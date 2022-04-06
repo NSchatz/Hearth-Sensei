@@ -1,9 +1,18 @@
+from os import remove
 import flask
+import requests
+import json
 from flask_login import (
     login_required,
     current_user,
     logout_user,
 )
+headers = {
+	"X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
+	"X-RapidAPI-Key": "053929e6f4mshfda02829f95e93ep190e5ajsnad031ead6f9f"
+}
+url = "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/types/Minion"
+
 
 hearth_routes = flask.Blueprint(
     "hearth_routes",
@@ -12,7 +21,33 @@ hearth_routes = flask.Blueprint(
 )
 
 
-@hearth_routes.route("/")
-@login_required
+@hearth_routes.route("/", methods=["POST", "GET"])
+# @login_required
 def index():
-    return flask.render_template("index.html")
+    response1 = requests.request("GET", url, headers=headers)
+    re1 = response1.json()
+    clean_data =  json.loads(response1)
+    print(clean_data)
+    for thing in clean_data:
+        if clean_data[0]['img'] == None:
+            clean_data[0].remove[0]
+    
+    print(clean_data)
+    
+    if flask.request.method == "POST":
+        card = str(flask.request.form.get("card"))
+        card2 = str(flask.request.form.get("card2"))
+        print(card)
+        url2 = "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/" + card
+        response2 = requests.request("GET", url2, headers=headers)
+        re2 = response2.json()
+        url3 = "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/" + card2
+        response3 = requests.request("GET", url3, headers=headers)
+        re3 = response3.json()
+        
+        print(re3)
+        
+        return flask.render_template("battle.html", re1=re1, re2=re2, re3=re3)
+    
+    return flask.render_template("battle.html", re1=re1)
+
