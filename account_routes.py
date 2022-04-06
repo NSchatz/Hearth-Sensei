@@ -49,4 +49,4 @@ def login_post():
 
     else:
         flask.flash("You don't have an account please sign up!")
-    return flask.redirect("account_routes.login")
+        return flask.redirect(flask.url_for("account_routes.login"))
