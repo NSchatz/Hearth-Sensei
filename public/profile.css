@@ -1,0 +1,22 @@
+table {
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+tr {
+    text-align: center;
+}
+
+body {
+    text-align: center;
+}
