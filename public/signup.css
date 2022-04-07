@@ -1,0 +1,72 @@
+
+.signup-background {
+    background-color: bisque;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-center {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.signup-header {
+    font-family: system-ui;
+    font-size: 40px;
+}
+
+.user-input {
+    border: 1px;
+    border-radius: 8px;
+    border-style: solid;
+    width: 300px;
+    font-size: 20px;
+    height: 50px;
+    border-color: lightgrey;
+}
+
+.user-font {
+    font-family: system-ui;
+}
+
+.password-input {
+    border: 1px;
+    border-radius: 8px;
+    border-style: solid;
+    width: 300px;
+    font-size: 20px;
+    height: 50px;
+    border-color: lightgrey;
+}
+
+.pass-font {
+    font-family: system-ui;
+}
+
+.submit-button {
+    background: rgb(7, 208, 235);
+    border: solid 1px rgb(7, 208, 235);
+    border-radius: 12px;
+    color: white;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+    float: right;
+}
+
+.signup-padding {
+    padding-top: 25px;
+}
+
+.button-padding {
+    padding-top: 10px;
+}
+
+.flavor-text {
+    color: darkgrey;
+}
