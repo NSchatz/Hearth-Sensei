@@ -21,7 +21,7 @@ hearth_routes = flask.Blueprint(
 )
 
 @hearth_routes.route("/", methods=["POST", "GET"])
-# @login_required
+@login_required
 def index():
      return flask.render_template("index.html")
 
