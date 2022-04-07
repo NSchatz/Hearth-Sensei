@@ -23,6 +23,17 @@ hearth_routes = flask.Blueprint(
 @hearth_routes.route("/", methods=["POST", "GET"])
 # @login_required
 def index():
+     return flask.render_template("index.html")
+
+@hearth_routes.route("/getcards", methods=["GET", "POST"])
+def getcards():
+    response1 = requests.request("GET", url, headers=headers)
+    re1 = response1.json()
+    filtered = [project for project in re1 if project.get('img') is not None]
+    print(filtered)
+    return flask.jsonify(filtered)
+
+
 #     response1 = requests.request("GET", url, headers=headers)
 #     re1 = response1.json()
 #     clean_data =  json.loads(response1)
@@ -47,16 +58,6 @@ def index():
 #         print(re3)
         
 #         return flask.render_template("battle.html", re1=re1, re2=re2, re3=re3)
-    
-     return flask.render_template("index.html")
-
-@hearth_routes.route("/getcards", methods=["GET", "POST"])
-def getcards():
-    response1 = requests.request("GET", url, headers=headers)
-    re1 = response1.json()
-    filtered = [project for project in re1 if project.get('img') is not None]
-    print(filtered)
-    return flask.jsonify(filtered)
 
 # @hearth_routes.route("/getcardinfo", methods=["GET", "POST"])
 # def getcardinfo():
