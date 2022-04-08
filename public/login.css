@@ -18,6 +18,7 @@
 .login-header {
     font-family: system-ui;
     font-size: 40px;
+    color: blue;
 }
 
 .user-input {
