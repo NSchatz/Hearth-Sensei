@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/react/profile.css">
+</head>
+
+<body>
+    <h1>Profile</h1>
+    <a href="{{url}}">Main Page</a>
+    <br>
+    <table>
+        <tr>
+            <p>Battle History</p>
+        </tr>
+        <tr>
+            <th>
+                Card 1
+            </th>
+            <th>
+                Card 2
+            </th>
+            <th>
+                Winner
+            </th>
+        </tr>
+        {% for entry in history %}
+        <tr>
+            <td>
+                <p>{{ entry.card1 }}</p>
+                <hr>
+                <p>Attack: {{ entry.card1_attack }}</p>
+                <p>Health: {{ entry.card1_health }}</p>
+            </td>
+            <td>
+                <p>{{ entry.card2 }}</p>
+                <hr>
+                <p>Attack: {{ entry.card2_attack }}</p>
+                <p>Health: {{ entry.card2_health }}</p>
+            </td>
+            <td>
+                <p>{{ entry.winner }}</p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

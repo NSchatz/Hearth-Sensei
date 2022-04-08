@@ -1,20 +1,40 @@
 <html>
-    <head></head>
-    <body>
-        <h1>Log In</h1>
-        <form method="POST" action="/login">
-            <input type="text" name="username" placeholder="Your Username" maxlength="30">
-            <input type="password" name="password" placeholder="Your Password" maxlength="30">
-            <input type="submit" value="Submit">
-        </form>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <b>{{message}}</b>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <br>
-        <a href="{{url}}">Sign Up</a>
+    <head>
+        <link rel="stylesheet" href="/static/react/login.css">
+    </head>
+    <body class="login-background">
+        <div class="login-center">
+            <div class="login-container">
+                <h1 class="login-header">Login</h1>
+                <form method="POST" action="/login">
+                    <div>
+                        <div class="user-font">Username</div>
+                        <input class="user-input" type="text" name="username" min="1"  maxlength="30" required>
+
+                    </div>
+                    <div class="login-padding">
+                        <div class="pass-font">Password</div>
+                        <input class="password-input" type="password" name="password" min="1"  maxlength="30" required>
+
+                    </div>
+                    <div class="button-padding">
+                        <input class="submit-button" type="submit" value="Login">
+
+                    </div>
+                </form>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <b>{{message}}</b>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <div>
+                <span class="flavor-text">Don't have an account?</span>
+                <a href="{{url}}">Sign Up</a>
+            </div>
+        </div>
     </body>
 </html>
