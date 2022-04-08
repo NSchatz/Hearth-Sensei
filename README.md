@@ -1,3 +1,6 @@
+## Heroku Link
+https://hearth-sensei.herokuapp.com/
+
 ## Install Requirements
 1. ```sudo apt-get update```
 2. ```sudo apt install python3-pip```
@@ -37,8 +40,6 @@
 4. 'Logout'. Ability to logout and create a new account.
 4. More to come!
 
-## Heroku Link
-https://hearth-sensei.herokuapp.com/
 
 ## Linting 
 1. hearth_routes.py, Line 8,13,16: Invalid-Name. The Header, URL, and hearth_routes were not considered 'good-names' 
@@ -46,3 +47,5 @@ https://hearth-sensei.herokuapp.com/
 3. account_routes.py, Line 8: Invalid-Name. Invalid-Name. The account_routes were not considered 'good-names'
 4. account_routes.py, Line 41,42: No-Member. Diabled. False positive for the '.commit()'
 5. account_routes.py, Line 53: No-Else-Return. Disabled. Our if does have an else return
+6. models.py, no-member. False Positives
+7. models.py, too-few-public-methods. Did not need public methods in this file.
