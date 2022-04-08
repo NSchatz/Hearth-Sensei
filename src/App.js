@@ -9,6 +9,7 @@ function App() {
   const [Card2, setCard2] = useState([]);
   const [Result, setResult] = useState('');
   const [isLoading, setLoading] = useState(true);
+  const [isEmpty, setEmpty] = useState(true);
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
@@ -23,10 +24,12 @@ function App() {
   function onChange1(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard1(filtered);
+    setEmpty(false);
   }
   function onChange2(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
+    setEmpty(false);
   }
   function onSubmit(event) {
     event.preventDefault();
@@ -71,6 +74,7 @@ function App() {
   }
   function randomizer() {
     const randomCard = Cards[Math.floor(Math.random() * Cards.length)];
+    setEmpty(false);
     return [randomCard];
   }
   function handleRandomOpp() {
@@ -82,10 +86,8 @@ function App() {
     setCard1(randomCard);
   }
   function handleRandomize() {
-    let randomCard1 = randomizer();
-    let randomCard2 = randomizer();
-    setCard1(randomCard1);
-    setCard2(randomCard2);
+    handleRandomUser();
+    handleRandomOpp();
   }
 
   return (
@@ -103,10 +105,10 @@ function App() {
           </select>
           <input type="Submit" value="Battle!" />
         </form>
-        <div></div>
         <div id='imgs'>
           {Card1.map((object) => <img id='c1' src={object.img} />)}
-          vs
+          {isEmpty ? <></> :
+            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
           {Card2.map((object) => <img id='c2' src={object.img} />)}
         </div>
         <div>
