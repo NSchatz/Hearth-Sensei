@@ -7,6 +7,7 @@ function App() {
   const [Cards, setCards] = useState([]);
   const [Card1, setCard1] = useState([]);
   const [Card2, setCard2] = useState([]);
+  const [Output, setOutput] = useState('');
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
@@ -17,12 +18,12 @@ function App() {
   console.log(Cards)
 
   function onChange1(e){
-    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(e.target.value)));
+    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val == e.target.value));
     setCard1(filtered);
     console.log(Card1);
   }
   function onChange2(e){
-    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(e.target.value)));
+    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val == e.target.value));
     setCard2(filtered);
     console.log(Card2);
   }
@@ -35,10 +36,12 @@ function App() {
     console.log(Card2.img);
     console.log(Card2);
     console.log(Card2.img);
-    return( 
-      <img src={Card1.img} />,
-      <img src={Card2.img} />
-    )
+    if(Card1.map((object) =>  object.attack)>Card2.map((object) =>  object.attack)){
+      setOutput('winner')
+    }else{
+      setOutput('none')
+    }
+    console.log(Output)
   }
 
   return (
@@ -52,8 +55,15 @@ function App() {
         </select>
         <input type="Submit"/>
       </form>
-      {Card1.map((object) =>  <div>Attack:{object.attack} Health:{object.health}<img src={object.img}/>,</div>)}
-      {Card2.map((object) => <div>Attack:{object.attack} Health:{object.health}<img src={object.img}/>,</div>)}
+      <div></div>
+      <div id='imgs'>
+      {Card1.map((object) =>  <img id='c1' src={object.img}/>)}
+      vs
+      {Card2.map((object) =>  <img id='c2' src={object.img}/>)}
+      </div>
+      <div>
+        {Output}
+      </div>
     </div>
   );
 }
