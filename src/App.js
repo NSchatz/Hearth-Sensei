@@ -56,7 +56,6 @@ function App() {
       "winner": winner,
     }
     submitRecentBattle(recentBattle)
-    console.log(recentBattle)
   }
   function submitRecentBattle(recentBattle) {
     fetch('/savebattle', {

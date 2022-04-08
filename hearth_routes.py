@@ -45,7 +45,6 @@ def getcards():
     response1 = requests.request("GET", url, headers=headers)
     re1 = response1.json()
     filtered = [project for project in re1 if project.get("img") is not None]
-    print(filtered)
     return flask.jsonify(filtered)
 
 
