@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
+import { Spinner } from 'react-bootstrap';
 let cards = '/getcards'
 
 function App() {
@@ -7,21 +8,28 @@ function App() {
   const [Card1, setCard1] = useState([]);
   const [Card2, setCard2] = useState([]);
   const [Result, setResult] = useState('');
+  const [isLoading, setLoading] = useState(true);
+  const [isEmpty, setEmpty] = useState(true);
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
-    }
-    ).then(res => res.json()).then(data => setCards(data));
+    }).then(res => res.json())
+      .then(data => {
+        setCards(data);
+        setLoading(false);
+      });
   }, []);
 
   function filterCard1(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard1(filtered);
+    setEmpty(false);
   }
   function filterCard2(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
+    setEmpty(false);
   }
   function onSubmit(event) {
     event.preventDefault();
@@ -56,7 +64,6 @@ function App() {
       "winner": winner,
     }
     submitRecentBattle(recentBattle)
-    console.log(recentBattle)
   }
   function submitRecentBattle(recentBattle) {
     fetch('/savebattle', {
@@ -67,6 +74,7 @@ function App() {
   }
   function randomizer() {
     const randomCard = Cards[Math.floor(Math.random() * Cards.length)];
+    setEmpty(false);
     return [randomCard];
   }
   function handleRandomOpp() {
@@ -78,36 +86,35 @@ function App() {
     setCard1(randomCard);
   }
   function handleRandomize() {
-    let randomCard1 = randomizer();
-    let randomCard2 = randomizer();
-    setCard1(randomCard1);
-    setCard2(randomCard2);
+    handleRandomUser();
+    handleRandomOpp();
   }
 
   return (
-    <div className="App">
-      <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
-      <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
-      <button type="button" onClick={handleRandomize}>Randomize Both</button>
-      <form action="" onSubmit={onSubmit}>
-        <select onChange={(e) => filterCard1(e)}>
-          {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
-        </select>
-        <select onChange={(e) => filterCard2(e)}>
-          {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
-        </select>
-        <input type="Submit" value="Battle!" />
-      </form>
-      <div></div>
-      <div id='imgs'>
-        {Card1.map((object) => <img id='c1' src={object.img} />)}
-        vs
-        {Card2.map((object) => <img id='c2' src={object.img} />)}
+    isLoading ? <div className="Loading-spinner"><Spinner animation="border" role="status" />Loading...</div>
+      : <div className="App">
+        <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
+        <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
+        <button type="button" onClick={handleRandomize}>Randomize Both</button>
+        <form action="" onSubmit={onSubmit}>
+          <select onChange={(e) => filterCard1(e)}>
+            {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
+          </select>
+          <select onChange={(e) => filterCard2(e)}>
+            {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
+          </select>
+          <input type="Submit" value="Battle!" />
+        </form>
+        <div id='imgs'>
+          {Card1.map((object) => <img id='c1' src={object.img} />)}
+          {isEmpty ? <></> :
+            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
+          {Card2.map((object) => <img id='c2' src={object.img} />)}
+        </div>
+        <div>
+          {Result}
+        </div>
       </div>
-      <div>
-        {Result}
-      </div>
-    </div>
   );
 }
 
