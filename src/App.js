@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
 let cards = '/getcards'
-let getcardinfo = '/getcardinfo'
 
 function App() {
   const [Cards, setCards] = useState([]);
@@ -26,16 +25,45 @@ function App() {
   }
   function onSubmit(event) {
     event.preventDefault();
-    let cardAttack1, cardAttack2;
-    Card1.map((object) => cardAttack1 = object.attack);
-    Card2.map((object) => cardAttack2 = object.attack);
-    if (cardAttack1 > cardAttack2) {
+    let card1Name, card1Attack, card1Health, card2Name, card2Attack, card2Health, winner;
+    Card1.map((object) => {
+      card1Attack = object.attack;
+      card1Health = object.health;
+      card1Name = object.name;
+    });
+    Card2.map((object) => {
+      card2Attack = object.attack;
+      card2Health = object.health;
+      card2Name = object.name;
+    });
+    if (card1Attack > card2Attack) {
       setResult('You win!');
-    } if (cardAttack1 < cardAttack2) {
+      winner = 'User';
+    } if (card1Attack < card2Attack) {
       setResult('Opponent wins!');
-    } if (cardAttack1 === cardAttack2) {
+      winner = 'Opponent';
+    } if (card1Attack === card2Attack) {
       (setResult('It\'s a tie!'));
+      winner = 'Tie';
     }
+    const recentBattle = {
+      "card1": card1Name,
+      "card1_attack": card1Attack,
+      "card1_health": card1Health,
+      "card2": card2Name,
+      "card2_attack": card2Attack,
+      "card2_health": card2Health,
+      "winner": winner,
+    }
+    submitRecentBattle(recentBattle)
+    console.log(recentBattle)
+  }
+  function submitRecentBattle(recentBattle) {
+    fetch('/savebattle', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ recentBattle }),
+    });
   }
   function randomizer() {
     const randomCard = Cards[Math.floor(Math.random() * Cards.length)];
@@ -61,14 +89,14 @@ function App() {
       <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
       <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
       <button type="button" onClick={handleRandomize}>Randomize Both</button>
-      <form action="" onSubmit={onSubmit} value="Battle!">
+      <form action="" onSubmit={onSubmit}>
         <select onChange={(e) => onChange1(e)}>
           {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
         </select>
         <select onChange={(e) => onChange2(e)}>
           {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
         </select>
-        <input type="Submit" />
+        <input type="Submit" value="Battle!" />
       </form>
       <div></div>
       <div id='imgs'>
