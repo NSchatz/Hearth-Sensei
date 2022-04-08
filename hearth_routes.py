@@ -9,9 +9,10 @@ from flask_login import (
     logout_user,
 )
 from models import Users, History, db
+
 headers = {
-	"X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
-	"X-RapidAPI-Key": os.getenv("API_KEY")
+    "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
+    "X-RapidAPI-Key": os.getenv("API_KEY"),
 }
 url = "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/types/Minion"
 
@@ -21,11 +22,13 @@ hearth_routes = flask.Blueprint(
     template_folder="./static/react",
 )
 
+
 @hearth_routes.route("/", methods=["POST", "GET"])
 @login_required
 def index():
     return flask.render_template(
-        "index.html", url=flask.url_for("hearth_routes.profile")
+        "index.html",
+        url=flask.url_for("hearth_routes.profile"),
     )
 
 
@@ -35,12 +38,31 @@ def profile():
     return flask.render_template(
         "profile.html", history=history, url=flask.url_for("hearth_routes.index")
     )
-  
+
 @hearth_routes.route("/getcards", methods=["GET", "POST"])
 def getcards():
     response1 = requests.request("GET", url, headers=headers)
     re1 = response1.json()
-    filtered = [project for project in re1 if project.get('img') is not None]
-    print(filtered)
+    filtered = [project for project in re1 if project.get("img") is not None]
     return flask.jsonify(filtered)
 
+
+@hearth_routes.route("/savebattle", methods=["POST"])
+def save_history():
+    recent_battle = flask.request.get_json()
+    recent_battle = recent_battle["recentBattle"]
+    if recent_battle["winner"] == "User":
+        recent_battle["winner"] = current_user.username
+    battle = History(
+        username=current_user.username,
+        card1=recent_battle["card1"],
+        card1_attack=recent_battle["card1_attack"],
+        card1_health=recent_battle["card1_health"],
+        card2=recent_battle["card2"],
+        card2_attack=recent_battle["card2_attack"],
+        card2_health=recent_battle["card2_health"],
+        winner=recent_battle["winner"],
+    )
+    db.session.add(battle)
+    db.session.commit()
+    return {"code": 200, "description": "Successfully submitted."}
