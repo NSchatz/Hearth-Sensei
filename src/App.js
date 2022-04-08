@@ -7,7 +7,7 @@ function App() {
   const [Cards, setCards] = useState([]);
   const [Card1, setCard1] = useState([]);
   const [Card2, setCard2] = useState([]);
-  const [Output, setOutput] = useState('');
+  const [Result, setResult] = useState('');
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
@@ -15,43 +15,34 @@ function App() {
     }
     ).then(res => res.json()).then(data => setCards(data));
   }, []);
-  console.log(Cards)
 
   function onChange1(e){
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val == e.target.value));
     setCard1(filtered);
-    console.log(Card1);
   }
+
   function onChange2(e){
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val == e.target.value));
     setCard2(filtered);
-    console.log(Card2);
   }
+
   function onSubmit(event){
     event.preventDefault();
-    console.log("refresh prevented");
-    var card1 = document.getElementById("Card1");
-    var card2 = document.getElementById("Card2");
-    console.log(Card1);
-    console.log(Card2.img);
-    console.log(Card2);
-    console.log(Card2.img);
     if(Card1.map((object) =>  object.attack)>Card2.map((object) =>  object.attack)){
-      setOutput('winner')
+      setResult('card1.attack>card2.attack')
     }else{
-      setOutput('none')
+      setResult('card2.attack>card1.attack')
     }
-    console.log(Output)
   }
 
   return (
     <div className="App">
       <form action="" onSubmit={onSubmit}>
-        <select name="1" id="" onChange={(e) => onChange1(e)}>
+        <select onChange={(e) => onChange1(e)}>
           {Cards.map((item)=> <option id='card1' key={item} value={ item.cardId }>{ item.name }</option>)}
         </select>
-        <select name="2" id="" onChange={(e) => onChange2(e)}>
-          {Cards.map((item)=> <option id='card2' key={item} value={ item.cardId }>{ item.name }</option>)}
+        <select onChange={(e) => onChange2(e)}>
+         {Cards.map((item)=> <option id='card2' key={item} value={ item.cardId }>{ item.name }</option>)}
         </select>
         <input type="Submit"/>
       </form>
@@ -62,7 +53,7 @@ function App() {
       {Card2.map((object) =>  <img id='c2' src={object.img}/>)}
       </div>
       <div>
-        {Output}
+        {Result}
       </div>
     </div>
   );
