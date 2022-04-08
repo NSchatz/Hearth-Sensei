@@ -1,6 +1,6 @@
 """accounts"""
 import flask
-from flask_login import login_user
+from flask_login import login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import Users, db
 
@@ -57,3 +57,11 @@ def login_post():
     else:
         flask.flash("You don't have an account please sign up!")
         return flask.redirect(flask.url_for("account_routes.login"))
+
+
+@account_routes.route("/logout", methods=["GET", "POST"])
+def logout():
+    """logout redirects to login page"""
+    if flask.request.method == "POST":
+        logout_user()
+    return flask.redirect(flask.url_for("account_routes.login"))
