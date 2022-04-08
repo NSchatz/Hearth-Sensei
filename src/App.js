@@ -21,12 +21,12 @@ function App() {
       });
   }, []);
 
-  function onChange1(e) {
+  function filterCard1(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard1(filtered);
     setEmpty(false);
   }
-  function onChange2(e) {
+  function filterCard2(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
     setEmpty(false);
@@ -97,10 +97,10 @@ function App() {
         <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
         <button type="button" onClick={handleRandomize}>Randomize Both</button>
         <form action="" onSubmit={onSubmit}>
-          <select onChange={(e) => onChange1(e)}>
+          <select onChange={(e) => filterCard1(e)}>
             {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
           </select>
-          <select onChange={(e) => onChange2(e)}>
+          <select onChange={(e) => filterCard2(e)}>
             {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
           </select>
           <input type="Submit" value="Battle!" />
