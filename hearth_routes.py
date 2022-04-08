@@ -2,6 +2,7 @@ from os import remove
 import flask
 import requests
 import json
+import os
 from flask_login import (
     login_required,
     current_user,
@@ -9,7 +10,7 @@ from flask_login import (
 )
 headers = {
 	"X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
-	"X-RapidAPI-Key": "053929e6f4mshfda02829f95e93ep190e5ajsnad031ead6f9f"
+	"X-RapidAPI-Key": os.getenv("API_KEY")
 }
 url = "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/types/Minion"
 
