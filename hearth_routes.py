@@ -39,7 +39,6 @@ def profile():
         "profile.html", history=history, url=flask.url_for("hearth_routes.index")
     )
 
-
 @hearth_routes.route("/getcards", methods=["GET", "POST"])
 def getcards():
     response1 = requests.request("GET", url, headers=headers)
