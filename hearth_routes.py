@@ -9,9 +9,9 @@ headers = {  # pylint:disable=invalid-name
     "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
     "X-RapidAPI-Key": os.getenv("API_KEY"),
 }
-url = (
+url = (  # pylint:disable=invalid-name
     "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/types/Minion"
-)  # pylint:disable=invalid-name
+)
 
 hearth_routes = flask.Blueprint(  # pylint:disable=invalid-name
     "hearth_routes", __name__, template_folder="./static/react"
