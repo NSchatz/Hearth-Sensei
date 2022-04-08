@@ -7,62 +7,77 @@ function App() {
   const [Cards, setCards] = useState([]);
   const [Card1, setCard1] = useState([]);
   const [Card2, setCard2] = useState([]);
-  const [Output, setOutput] = useState('');
+  const [Result, setResult] = useState('');
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'}
+      headers: { 'Content-Type': 'application/json' }
     }
     ).then(res => res.json()).then(data => setCards(data));
   }, []);
-  console.log(Cards)
 
-  function onChange1(e){
-    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val == e.target.value));
+  function onChange1(e) {
+    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard1(filtered);
-    console.log(Card1);
   }
-  function onChange2(e){
-    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val == e.target.value));
+  function onChange2(e) {
+    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
-    console.log(Card2);
   }
-  function onSubmit(event){
+  function onSubmit(event) {
     event.preventDefault();
-    console.log("refresh prevented");
-    var card1 = document.getElementById("Card1");
-    var card2 = document.getElementById("Card2");
-    console.log(Card1);
-    console.log(Card2.img);
-    console.log(Card2);
-    console.log(Card2.img);
-    if(Card1.map((object) =>  object.attack)>Card2.map((object) =>  object.attack)){
-      setOutput('winner')
-    }else{
-      setOutput('none')
+    let cardAttack1, cardAttack2;
+    Card1.map((object) => cardAttack1 = object.attack);
+    Card2.map((object) => cardAttack2 = object.attack);
+    if (cardAttack1 > cardAttack2) {
+      setResult('You win!');
+    } if (cardAttack1 < cardAttack2) {
+      setResult('Opponent wins!');
+    } if (cardAttack1 === cardAttack2) {
+      (setResult('It\'s a tie!'));
     }
-    console.log(Output)
+  }
+  function randomizer() {
+    const randomCard = Cards[Math.floor(Math.random() * Cards.length)];
+    return [randomCard];
+  }
+  function handleRandomOpp() {
+    let randomCard = randomizer();
+    setCard2(randomCard);
+  }
+  function handleRandomUser() {
+    let randomCard = randomizer();
+    setCard1(randomCard);
+  }
+  function handleRandomize() {
+    let randomCard1 = randomizer();
+    let randomCard2 = randomizer();
+    setCard1(randomCard1);
+    setCard2(randomCard2);
   }
 
   return (
     <div className="App">
-      <form action="" onSubmit={onSubmit}>
-        <select name="1" id="" onChange={(e) => onChange1(e)}>
-          {Cards.map((item)=> <option id='card1' key={item} value={ item.cardId }>{ item.name }</option>)}
+      <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
+      <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
+      <button type="button" onClick={handleRandomize}>Randomize Both</button>
+      <form action="" onSubmit={onSubmit} value="Battle!">
+        <select onChange={(e) => onChange1(e)}>
+          {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
         </select>
-        <select name="2" id="" onChange={(e) => onChange2(e)}>
-          {Cards.map((item)=> <option id='card2' key={item} value={ item.cardId }>{ item.name }</option>)}
+        <select onChange={(e) => onChange2(e)}>
+          {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
         </select>
-        <input type="Submit"/>
+        <input type="Submit" />
       </form>
       <div></div>
       <div id='imgs'>
-      {Card1.map((object) =>  <img id='c1' src={object.img}/>)}
-      vs
-      {Card2.map((object) =>  <img id='c2' src={object.img}/>)}
+        {Card1.map((object) => <img id='c1' src={object.img} />)}
+        vs
+        {Card2.map((object) => <img id='c2' src={object.img} />)}
       </div>
       <div>
-        {Output}
+        {Result}
       </div>
     </div>
   );
