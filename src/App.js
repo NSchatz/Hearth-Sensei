@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import './App.css';
 import React, { useState, useEffect } from "react";
 import { Spinner } from 'react-bootstrap';
@@ -34,11 +35,13 @@ function App() {
   function onSubmit(event) {
     event.preventDefault();
     let card1Name, card1Attack, card1Health, card2Name, card2Attack, card2Health, winner;
+    // eslint-disable-next-line array-callback-return
     Card1.map((object) => {
       card1Attack = object.attack;
       card1Health = object.health;
       card1Name = object.name;
     });
+    // eslint-disable-next-line array-callback-return
     Card2.map((object) => {
       card2Attack = object.attack;
       card2Health = object.health;
@@ -110,7 +113,7 @@ function App() {
           {Card1.map((object) => <img id='c1' src={object.img} />)}
           {isEmpty ? <></> :
             <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
-          {Card2.map((object) => <img id='c2' src={object.img} />)}
+          {Card2.map((object) => <img id='c2' src={object.img} />)} 
         </div>
         <div class="result">
           Result
