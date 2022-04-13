@@ -44,16 +44,17 @@ function App() {
       card2Health = object.health;
       card2Name = object.name;
     });
-    if (card1Attack > card2Attack) {
-      setResult('You win!');
-      winner = 'User';
-    } if (card1Attack < card2Attack) {
-      setResult('Opponent wins!');
-      winner = 'Opponent';
-    } if (card1Attack === card2Attack) {
-      (setResult('It\'s a tie!'));
-      winner = 'Tie';
-    }
+      if ((card1Health/card2Attack) > (card2Health/card1Attack)) {
+        setResult('You win!');
+        winner = 'User';
+      } else if ((card1Health/card2Attack) < (card2Health/card1Attack)) {
+        setResult('Opponent wins!');
+        winner = 'Opponent';
+      } else if((card1Health/card2Attack) === (card2Health/card1Attack)) {
+        setResult('Whoever goes first wins!');
+        winner = 'Tie';
+      }
+
     const recentBattle = {
       "card1": card1Name,
       "card1_attack": card1Attack,
