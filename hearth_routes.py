@@ -65,3 +65,4 @@ def save_history():
     db.session.add(battle)  # pylint:disable=no-member
     db.session.commit()  # pylint:disable=no-member
     return {"code": 200, "description": "Successfully submitted."}
+    #test
