@@ -112,7 +112,10 @@ function App() {
             <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
           {Card2.map((object) => <img id='c2' src={object.img} />)}
         </div>
-        <div>
+        <div class="result">
+          Result
+        </div>
+        <div class="winner-result">
           {Result}
         </div>
       </div>
