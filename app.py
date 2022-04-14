@@ -6,7 +6,7 @@ from models import Users, db
 from account_routes import account_routes
 from hearth_routes import hearth_routes
 
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, template_folder="./static/react")
 
 load_dotenv(find_dotenv())
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
@@ -32,6 +32,13 @@ def load_user(id):
 
 app.register_blueprint(account_routes)
 app.register_blueprint(hearth_routes)
+
+
+@app.errorhandler(404)
+def not_found(e):
+    """this is necessary for react router to work with flask"""
+    return flask.render_template("index.html")
+
 
 db.init_app(app)
 with app.app_context():
