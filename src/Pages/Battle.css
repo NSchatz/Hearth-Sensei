@@ -1,0 +1,17 @@
+.Battle {
+  height: 100vh;
+  text-align: center;
+  background-color: bisque;
+}
+
+.Loading-spinner {
+  display: flex;
+  height: 100vh;
+  background-color: bisque;
+  flex-direction: column;
+  align-items: center;
+}
+
+#c1 {
+  background: none;
+}
