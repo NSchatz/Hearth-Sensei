@@ -1,34 +1,12 @@
-* {
-  background: bisque;
-  color: black;
-}
-
-.App {
-  text-align: center;
-  background-color: bisque;
-}
-
-.App-header {
-  background-color: #282c34;
+body {
   min-height: 100vh;
+  background: white;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.Loading-spinner {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-#c1 {
-  background: none;
 }
