@@ -1,0 +1,41 @@
+.Battle {
+  height: 100vh;
+  text-align: center;
+  background-color: bisque;
+}
+
+.Loading-spinner {
+  display: flex;
+  height: 100vh;
+  background-color: bisque;
+  flex-direction: column;
+  align-items: center;
+}
+
+#c1 {
+  background: none;
+}
+
+.result {
+  font-family: Garamond;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: bold;
+  color: #000000;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.winner-result {
+  display: inline;
+  color: darkblue;
+  font-family: Garamond;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-width: 10px;
+  border-style: outset;
+  border-color: brown;
+}
