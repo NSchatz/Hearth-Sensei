@@ -34,24 +34,26 @@ function Battle() {
   function onSubmit(event) {
     event.preventDefault();
     let card1Name, card1Attack, card1Health, card2Name, card2Attack, card2Health, winner;
+    // eslint-disable-next-line array-callback-return
     Card1.map((object) => {
       card1Attack = object.attack;
       card1Health = object.health;
       card1Name = object.name;
     });
+    // eslint-disable-next-line array-callback-return
     Card2.map((object) => {
       card2Attack = object.attack;
       card2Health = object.health;
       card2Name = object.name;
     });
-    if (card1Attack > card2Attack) {
+    if ((card1Health / card2Attack) > (card2Health / card1Attack)) {
       setResult('You win!');
       winner = 'User';
-    } if (card1Attack < card2Attack) {
+    } else if ((card1Health / card2Attack) < (card2Health / card1Attack)) {
       setResult('Opponent wins!');
       winner = 'Opponent';
-    } if (card1Attack === card2Attack) {
-      (setResult('It\'s a tie!'));
+    } else if ((card1Health / card2Attack) === (card2Health / card1Attack)) {
+      setResult('Whoever goes first wins!');
       winner = 'Tie';
     }
     const recentBattle = {
@@ -111,7 +113,10 @@ function Battle() {
             <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
           {Card2.map((object) => <img id='c2' src={object.img} />)}
         </div>
-        <div>
+        <div class="result">
+          Result
+        </div>
+        <div class="winner-result">
           {Result}
         </div>
       </div>

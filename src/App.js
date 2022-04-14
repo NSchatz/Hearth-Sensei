@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+import './App.css';
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Battle from "./Pages/Battle"

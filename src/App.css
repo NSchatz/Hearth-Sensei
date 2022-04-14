@@ -1,12 +1,4 @@
 body {
   min-height: 100vh;
   background: white;
-  display: flex;
-}
-
-#root {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
