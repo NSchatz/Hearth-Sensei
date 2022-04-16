@@ -4,10 +4,13 @@ import { Spinner } from 'react-bootstrap';
 let cards = '/getcards'
 
 function Battle() {
+  const [attackInput, setAttackInput] = useState([]);
+  const [healthInput, setHealthInput] = useState([]);
   const [Cards, setCards] = useState([]);
   const [Card1, setCard1] = useState([]);
   const [Card2, setCard2] = useState([]);
   const [Result, setResult] = useState('');
+  const [customResult, setCustomResult] = useState('');
   const [isLoading, setLoading] = useState(true);
   const [isEmpty, setEmpty] = useState(true);
   useEffect(() => {
@@ -29,6 +32,11 @@ function Battle() {
   function filterCard2(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
+    setEmpty(false);
+  }
+  function customCard(e) {
+    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
+    setCard1(filtered);
     setEmpty(false);
   }
   function onSubmit(event) {
@@ -66,6 +74,52 @@ function Battle() {
       "winner": winner,
     }
     submitRecentBattle(recentBattle)
+  }
+
+  const handleAttack  = (e) => {
+    setAttackInput({value: e.target.value})
+  }
+
+  const handleHealth  = (e) => {
+  setHealthInput({value: e.target.value})
+  }
+
+
+  function customCardBattle(event) {
+    event.preventDefault();
+
+
+    let card1Name, card1Attack, card1Health, card2Name, card2Attack, card2Health, winner;
+    // eslint-disable-next-line array-callback-return
+      card1Attack = attackInput;
+      card1Health = healthInput;
+      card1Name = 'custom';
+    // eslint-disable-next-line array-callback-return
+    Card2.map((object) => {
+      card2Attack = object.attack;
+      card2Health = object.health;
+      card2Name = object.name;
+    });
+    if ((card1Health / card2Attack) > (card2Health / card1Attack)) {
+      setCustomResult('You win!');
+      winner = 'User';
+    } else if ((card1Health / card2Attack) < (card2Health / card1Attack)) {
+      setCustomResult('Opponent wins!');
+      winner = 'Opponent';
+    } else if ((card1Health / card2Attack) === (card2Health / card1Attack)) {
+      setCustomResult('Whoever goes first wins!');
+      winner = 'Tie';
+    }
+    // Work in progress
+    const recentBattle = {
+      "card1": card1Name,
+      "card1_attack": card1Attack,
+      "card1_health": card1Health,
+      "card2": card2Name,
+      "card2_attack": card2Attack,
+      "card2_health": card2Health,
+      "winner": winner,
+    }
   }
   function submitRecentBattle(recentBattle) {
     fetch('/savebattle', {
@@ -118,6 +172,24 @@ function Battle() {
         </div>
         <div class="winner-result">
           {Result}
+        </div>
+        <div>
+        <form action="" onSubmit={customCardBattle}>
+          <div>Attack</div>
+          <input id="attack" type="Attack" value={attackInput.value} onChange={(e)=>handleAttack(e)} />
+          <div>Health</div>
+          <input id="health" type="Health" value={healthInput.value} onChange={(e)=>handleHealth(e)} />
+          <select onChange={(e) => filterCard2(e)}>
+            {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
+          </select>
+          <input type="Submit" value="Custom Battle!" />
+        </form>
+        <div class="result">
+          Result
+        </div>
+        <div class="winner-result">
+          {customResult}
+        </div>
         </div>
       </div>
   );
