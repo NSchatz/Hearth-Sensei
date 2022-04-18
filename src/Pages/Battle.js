@@ -1,5 +1,5 @@
 import './Battle.css';
-import Image from "../images/blankcard4.png";
+import Image from "../images/blankcard1.png";
 import React, { useState, useEffect } from "react";
 import { Spinner } from 'react-bootstrap';
 let cards = '/getcards'
@@ -15,6 +15,8 @@ function Battle() {
   const [customResult, setCustomResult] = useState('');
   const [isLoading, setLoading] = useState(true);
   const [isEmpty, setEmpty] = useState(true);
+  
+
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
