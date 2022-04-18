@@ -1,7 +1,8 @@
 import './Battle.css';
-import Image from "../images/blankcard1.png";
-import React, { useState, useEffect } from "react";
-import { Spinner } from 'react-bootstrap';
+import Image1 from "../images/blankcard1.png";
+import React, { useState, useEffect, Image } from "react";
+import { Spinner, Container } from 'react-bootstrap';
+
 let cards = '/getcards'
 
 function Battle() {
@@ -31,11 +32,13 @@ function Battle() {
   function filterCard1(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard1(filtered);
+    console.log(Card1)
     setEmpty(false);
   }
   function filterCard2(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
+    console.log(Card2)
     setEmpty(false);
   }
   function filterCard3(e) {
@@ -57,12 +60,14 @@ function Battle() {
       card1Health = object.health;
       card1Name = object.name;
     });
+    
     // eslint-disable-next-line array-callback-return
     Card2.map((object) => {
       card2Attack = object.attack;
       card2Health = object.health;
       card2Name = object.name;
     });
+    
     if ((card1Health / card2Attack) > (card2Health / card1Attack)) {
       setResult('You win!');
       winner = 'User';
@@ -127,13 +132,15 @@ function Battle() {
     // Work in progress
     const recentBattle = {
       "card1": card1Name,
-      "card1_attack": card1Attack,
-      "card1_health": card1Health,
+      "card1_attack": Number(card1Attack['value']),
+      "card1_health": Number(card1Health['value']),
       "card2": card2Name,
       "card2_attack": card2Attack,
       "card2_health": card2Health,
       "winner": winner,
     }
+    submitRecentBattle(recentBattle)
+    console.log(recentBattle)
   }
   function submitRecentBattle(recentBattle) {
     fetch('/savebattle', {
@@ -176,10 +183,10 @@ function Battle() {
           <input type="Submit" value="Battle!" />
         </form>
         <div id='imgs'>
-          {Card1.map((object) => <img id='c1' src={object.img} />)}
+          {Card1.map((object) => <img class='img' src={object.img} />)}
           {isEmpty ? <></> :
             <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
-          {Card2.map((object) => <img id='c2' src={object.img} />)}
+          {Card2.map((object) => <img class='img' src={object.img} />)}
         </div>
         <div class="result">
           Result
@@ -200,11 +207,27 @@ function Battle() {
           <input type="Submit" value="Custom Battle!" />
         </form>
         <div id='imgs'>
-          <img src={Image} width="375" />
+          
+        <Container class="customcontainer">
+            <img src={Image1} class='img' alt="" />
+            <div class="inputs">
+              <div class="attackinput">{attackInput['value']}</div>
+              <div class="healthinput">{healthInput['value']}</div>
+            </div>
+            
+        </Container>
+          {/* <div>
+            <img src={Image1} width="375" />
+            
+          </div> */}
+          
           {isEmpty ? <></> :
             <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
-          {Card3.map((object) => <img id='c3' src={object.img} />)}
+          {Card3.map((object) => <img class='img' src={object.img} />)}
         </div>
+        
+          
+        
        
           
           
