@@ -22,18 +22,34 @@ hearth_routes = flask.Blueprint(  # pylint:disable=invalid-name
 @login_required
 def index():
     """render index"""
-    return flask.render_template(
-        "index.html", url=flask.url_for("hearth_routes.profile")
-    )
+    return flask.render_template("index.html")
 
 
-@hearth_routes.route("/profile")
-def profile():
-    """render profile"""
-    history = History.query.filter_by(username=current_user.username).all()
-    return flask.render_template(
-        "profile.html", history=history, url=flask.url_for("hearth_routes.index")
-    )
+@hearth_routes.route("/battles")
+def battles():
+    """Gets battle history"""
+    battles = History.query.filter_by(username=current_user.username).all()
+    battle_history = []
+    for battle in battles:
+        card1 = battle.card1
+        card1_attack = battle.card1_attack
+        card1_health = battle.card1_health
+        card2 = battle.card2
+        card2_attack = battle.card2_attack
+        card2_health = battle.card2_health
+        winner = battle.winner
+        battle_history.append(
+            {
+                "card1": card1,
+                "card1_attack": card1_attack,
+                "card1_health": card1_health,
+                "card2": card2,
+                "card2_attack": card2_attack,
+                "card2_health": card2_health,
+                "winner": winner,
+            }
+        )
+    return flask.jsonify(battle_history)
 
 
 @hearth_routes.route("/getcards", methods=["GET", "POST"])
