@@ -1,14 +1,16 @@
 import './Battle.css';
+import Image from "../images/blankcard4.png";
 import React, { useState, useEffect } from "react";
 import { Spinner } from 'react-bootstrap';
 let cards = '/getcards'
 
 function Battle() {
-  const [attackInput, setAttackInput] = useState([]);
-  const [healthInput, setHealthInput] = useState([]);
+  const [attackInput, setAttackInput] = useState('');
+  const [healthInput, setHealthInput] = useState('');
   const [Cards, setCards] = useState([]);
   const [Card1, setCard1] = useState([]);
   const [Card2, setCard2] = useState([]);
+  const [Card3, setCard3] = useState([]);
   const [Result, setResult] = useState('');
   const [customResult, setCustomResult] = useState('');
   const [isLoading, setLoading] = useState(true);
@@ -32,6 +34,11 @@ function Battle() {
   function filterCard2(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
+    setEmpty(false);
+  }
+  function filterCard3(e) {
+    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
+    setCard3(filtered);
     setEmpty(false);
   }
   function customCard(e) {
@@ -78,10 +85,14 @@ function Battle() {
 
   const handleAttack  = (e) => {
     setAttackInput({value: e.target.value})
+    console.log(attackInput)
+    
+    
   }
 
   const handleHealth  = (e) => {
-  setHealthInput({value: e.target.value})
+    setHealthInput({value: e.target.value})
+    console.log(healthInput)
   }
 
 
@@ -95,21 +106,22 @@ function Battle() {
       card1Health = healthInput;
       card1Name = 'custom';
     // eslint-disable-next-line array-callback-return
-    Card2.map((object) => {
+    Card3.map((object) => {
       card2Attack = object.attack;
       card2Health = object.health;
       card2Name = object.name;
     });
-    if ((card1Health / card2Attack) > (card2Health / card1Attack)) {
+    if ((card1Health['value'] / card2Attack) > (card2Health / card1Attack['value'])) {
       setCustomResult('You win!');
       winner = 'User';
-    } else if ((card1Health / card2Attack) < (card2Health / card1Attack)) {
+    } else if ((card1Health['value'] / card2Attack) < (card2Health / card1Attack['value'])) {
       setCustomResult('Opponent wins!');
       winner = 'Opponent';
-    } else if ((card1Health / card2Attack) === (card2Health / card1Attack)) {
+    } else if ((card1Health['value'] / card2Attack) === (card2Health / card1Attack['value'])) {
       setCustomResult('Whoever goes first wins!');
       winner = 'Tie';
     }
+    console.log(customResult)
     // Work in progress
     const recentBattle = {
       "card1": card1Name,
@@ -179,11 +191,23 @@ function Battle() {
           <input id="attack" type="Attack" value={attackInput.value} onChange={(e)=>handleAttack(e)} />
           <div>Health</div>
           <input id="health" type="Health" value={healthInput.value} onChange={(e)=>handleHealth(e)} />
-          <select onChange={(e) => filterCard2(e)}>
-            {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
+          <select onChange={(e) => filterCard3(e)}>
+            {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
           </select>
+          
           <input type="Submit" value="Custom Battle!" />
         </form>
+        <div id='imgs'>
+          <img src={Image} width="375" />
+          {isEmpty ? <></> :
+            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
+          {Card3.map((object) => <img id='c3' src={object.img} />)}
+        </div>
+       
+          
+          
+
+        
         <div class="result">
           Result
         </div>
