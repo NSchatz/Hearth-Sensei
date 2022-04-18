@@ -12,16 +12,13 @@ function Battle() {
   const [Card1, setCard1] = useState([]);
   const [Card2, setCard2] = useState([]);
   const [Card3, setCard3] = useState([]);
-  const [customCard1, setcustomCard] = useState([]);
   const [Result, setResult] = useState('');
   const [customResult, setCustomResult] = useState('');
   const [isLoading, setLoading] = useState(true);
   const [isEmpty, setEmpty] = useState(true);
   const cardback = [{"img":"https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png"}]
-  
-  
-  console.log(Card1)
-
+    setCard1(cardback)
+    console.log(Card1)
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
@@ -30,10 +27,6 @@ function Battle() {
       .then(data => {
         setCards(data);
         setLoading(false);
-        setCard1(cardback)
-        setCard2(cardback)
-        setCard3(cardback)
-        setcustomCard({"img":"https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png"})
       });
   }, []);
 
@@ -47,6 +40,7 @@ function Battle() {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
     console.log(Card2)
+    console.log(Card1)
     setEmpty(false);
   }
   function filterCard3(e) {
@@ -101,17 +95,18 @@ function Battle() {
   const handleAttack  = (e) => {
     setAttackInput({value: e.target.value})
     console.log(attackInput)
-    setcustomCard({"img":Image1})
   }
 
   const handleHealth  = (e) => {
     setHealthInput({value: e.target.value})
     console.log(healthInput)
-    setcustomCard({"img":Image1})
   }
+
 
   function customCardBattle(event) {
     event.preventDefault();
+
+
     let card1Name, card1Attack, card1Health, card2Name, card2Attack, card2Health, winner;
     // eslint-disable-next-line array-callback-return
       card1Attack = attackInput;
@@ -214,16 +209,22 @@ function Battle() {
         <div id='imgs'>
           
         <Container class="customcontainer">
-            <img src={customCard1['img']} class='img' alt="" />
+            <img src={Image1} class='img' alt="" />
             <div class="inputs">
               <div class="attackinput">{attackInput['value']}</div>
               <div class="healthinput">{healthInput['value']}</div>
             </div>
+            
         </Container>
+          {/* <div>
+            <img src={Image1} width="375" />
+            
+          </div> */}
+          
           {isEmpty ? <></> :
             <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
           {Card3.map((object) => <img class='img' src={object.img} />)}
-        </div>  
+        </div>
         <div class="result">
           Result
         </div>
