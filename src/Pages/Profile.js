@@ -1,6 +1,43 @@
 import './Profile.css';
 import React, { useState, useEffect } from "react";
 
+function HistoryRow(props) {
+    var battle = props.value;
+    console.log(battle);
+    return (
+        <tr>
+            <td>
+                {battle.card1}
+                <hr />
+                <p>
+                    Attack: {battle.card1_attack}
+                </p>
+                <br></br>
+                <p>
+                    Health: {battle.card1_health}
+                </p>
+            </td>
+            <td>
+                {battle.card2}
+                <hr />
+                <p>
+                    Attack: {battle.card2_attack}
+                </p>
+                <br></br>
+                <p>
+                    Health: {battle.card2_health}
+                </p>
+            </td>
+            <td>
+                {battle.winner}
+            </td>
+            <td>
+                <input type="button" value="Delete" onClick={props.onClick} />
+            </td>
+        </tr>
+    );
+}
+
 function HistoryTable() {
     const [battles, setBattles] = useState([]);
     function getBattles() {
@@ -13,41 +50,34 @@ function HistoryTable() {
         getBattles();
     }, []);
 
+    function deleteAll() {
+        fetch('/deleteAll', {
+            method: 'POST'
+        }).then((response) => (response.json()))
+            .then((data) => { setBattles(data); });
+    }
+
+    function deleteBattle(id) {
+        var battle = { "id": id };
+        fetch('/delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(battle),
+        }).then((response) => (response.json()))
+            .then((data) => { setBattles(data); });
+    }
+
+    function row(battle) {
+        return <HistoryRow value={battle} onClick={() => deleteBattle(battle.id)} />
+    }
+
     function historyRows() {
         var rows = [];
         var i = 0;
         for (i = 0; i < battles.length; i++) {
             var currentRow = battles[i];
-            var row = (
-                <tr>
-                    <td>
-                        {currentRow.card1}
-                        <br></br>
-                        <p>
-                            Attack: {currentRow.card1_attack}
-                        </p>
-                        <br></br>
-                        <p>
-                            Health: {currentRow.card1_health}
-                        </p>
-                    </td>
-                    <td>
-                        {currentRow.card2}
-                        <br></br>
-                        <p>
-                            Attack: {currentRow.card2_attack}
-                        </p>
-                        <br></br>
-                        <p>
-                            Health: {currentRow.card2_health}
-                        </p>
-                    </td>
-                    <td>
-                        {currentRow.winner}
-                    </td>
-                </tr>
-            );
-            rows.push(row);
+            var tableRow = row(currentRow);
+            rows.push(tableRow);
         }
         return rows;
     }
@@ -61,6 +91,9 @@ function HistoryTable() {
                     <th>Winner</th>
                 </tr>
                 {historyRows()}
+                <tr>
+                    <input type="button" value="Delete All Entries" onClick={() => deleteAll()} />
+                </tr>
             </table>
         </div>
     );
