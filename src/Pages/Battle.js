@@ -189,8 +189,7 @@ function Battle() {
         </form>
         <div id='imgs'>
           {Card1.map((object) => <img class='img' src={object.img} />)}
-          {isEmpty ? <></> :
-            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
+            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
           {Card2.map((object) => <img class='img' src={object.img} />)}
         </div>
         <div class="result">
@@ -220,8 +219,7 @@ function Battle() {
               <div class="healthinput">{healthInput['value']}</div>
             </div>
         </Container>
-          {isEmpty ? <></> :
-            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
+            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
           {Card3.map((object) => <img class='img' src={object.img} />)}
         </div>  
         <div class="result">
