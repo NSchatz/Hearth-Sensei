@@ -173,7 +173,7 @@ function Battle() {
   }
 
   return (
-    isLoading ? <div className="Loading-spinner"><Spinner animation="border" role="status" />Loading...</div>
+    isLoading ? <div className="Loading-spinner" class="center"><Spinner animation="border" role="status" />Loading...</div>
       : <div className="Battle">
         <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
         <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
@@ -201,29 +201,33 @@ function Battle() {
         </div>
         <div>
         <form action="" onSubmit={customCardBattle}>
-          <div>Attack</div>
-          <input id="attack" type="Attack" value={attackInput.value} onChange={(e)=>handleAttack(e)} />
-          <div>Health</div>
-          <input id="health" type="Health" value={healthInput.value} onChange={(e)=>handleHealth(e)} />
-          <select onChange={(e) => filterCard3(e)}>
-            {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
-          </select>
-          
+
+          <div class="card-container">
+            <div class="attack-text">Attack</div>
+            <input id="attack" type="Attack" value={attackInput.value} onChange={(e)=>handleAttack(e)} />
+            <div>Health</div>
+            <input id="health" type="Health" value={healthInput.value} onChange={(e)=>handleHealth(e)} />
+            <select onChange={(e) => filterCard3(e)}>
+              {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
+            </select>
+          </div>
+          <div id='imgs'>
+            <div class="card-container">
+              <Container class="customcontainer">
+                <img src={customCard1['img']} class='img' alt="" />
+                <div class="inputs">
+                  <div class="attackinput">{attackInput['value']}</div>
+                  <div class="healthinput">{healthInput['value']}</div>
+                </div>
+              </Container>
+              {isEmpty ? <></> :
+                <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
+              {Card3.map((object) => <img class='img' src={object.img} />)}
+            </div>
+          </div>
           <input type="Submit" value="Custom Battle!" />
         </form>
-        <div id='imgs'>
-          
-        <Container class="customcontainer">
-            <img src={customCard1['img']} class='img' alt="" />
-            <div class="inputs">
-              <div class="attackinput">{attackInput['value']}</div>
-              <div class="healthinput">{healthInput['value']}</div>
-            </div>
-        </Container>
-          {isEmpty ? <></> :
-            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />/*temp versus img*/}
-          {Card3.map((object) => <img class='img' src={object.img} />)}
-        </div>  
+         
         <div class="result">
           Result
         </div>
