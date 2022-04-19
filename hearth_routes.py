@@ -31,6 +31,7 @@ def battles():
     battles = History.query.filter_by(username=current_user.username).all()
     battle_history = []
     for battle in battles:
+        id = battle.id
         card1 = battle.card1
         card1_attack = battle.card1_attack
         card1_health = battle.card1_health
@@ -40,6 +41,7 @@ def battles():
         winner = battle.winner
         battle_history.append(
             {
+                "id": id,
                 "card1": card1,
                 "card1_attack": card1_attack,
                 "card1_health": card1_health,
@@ -50,6 +52,24 @@ def battles():
             }
         )
     return flask.jsonify(battle_history)
+
+
+@hearth_routes.route("/delete", methods=["GET", "POST"])
+def delete():
+    response = flask.request.json
+    id = response.get("id")
+    History.query.filter_by(id=id).delete()
+    db.session.commit()
+
+    return flask.redirect(flask.url_for("hearth_routes.battles"))
+
+
+@hearth_routes.route("/deleteAll", methods=["GET", "POST"])
+def deleteAll():
+    History.query.filter_by(username=current_user.username).delete()
+    db.session.commit()
+
+    return flask.redirect(flask.url_for("hearth_routes.battles"))
 
 
 @hearth_routes.route("/getcards", methods=["GET", "POST"])
