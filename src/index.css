@@ -5,10 +5,48 @@
 }
 
 .Navbar {
+    height: 80px;
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    background: #191e2d1a;
+    justify-content: space-between;
+    padding: 20px 5%;
+    background-color: bisque;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75);
+}
+
+.NavTabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NavLinks {
+    list-style: none;
+    display: flex;
+}
+
+.NavLinks a {
+    font-weight: 500;
+    color: #10162e;
+    text-decoration: none;
+}
+
+.NavLinks li {
+    padding: 0px 20px;
+}
+
+.NavLinks li a {
+    transition: color 0.3s ease 0s;
+}
+
+.NavLinks li a:hover {
+    color: #2b17de;
+}
+
+ul.NavLinks {
+    margin-bottom: 0;
+    padding-left: 0;
 }
 
 body {
@@ -19,4 +57,40 @@ body {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.header a {
+    float: left;
+    text-align: center;
+    padding: 10px 14px;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 25px;
+    border-radius: 4px;
+    margin: 0 15px;
+}
+
+.header a:hover {
+    background-color: rgb(233, 206, 184);
+}
+
+.header a.active {
+    background-color: #79552b;
+    color: white;
+}
+
+.header-right {
+    float: center;
+    padding-top: 8px;
+}
+
+.submit-button {
+    background: rgb(7, 208, 235);
+    border: solid 1px rgb(7, 208, 235);
+    border-radius: 12px;
+    color: white;
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+    float: center;
 }
