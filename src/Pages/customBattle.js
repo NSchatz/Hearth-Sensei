@@ -109,7 +109,7 @@ function CustomBattle() {
             : <div className="Battle">
                 <Link to='/battle'>Normal Battle</Link>
                 <br />
-                <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
+                <button class="random-button" type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
                 <div>
                     <form action="" onSubmit={customCardBattle}>
                         <div>Attack</div>
@@ -119,21 +119,20 @@ function CustomBattle() {
                         <select onChange={(e) => filterCard3(e)}>
                             {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
                         </select>
-
-                        <input type="Submit" value="Custom Battle!" />
+                        <div id='imgs'>
+                            <Container class="customcontainer">
+                                <img src={customCard1['img']} class='img' alt="" />
+                                <div class="inputs">
+                                    <div class="attackinput">{attackInput['value']}</div>
+                                    <div class="healthinput">{healthInput['value']}</div>
+                                </div>
+                            </Container>
+                            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
+                            {Card3.map((object) => <img class='img' src={object.img} />)}
+                        </div>
+                        <input class="battle-button" type="Submit" value="Custom Battle!" />
                     </form>
-                    <div id='imgs'>
 
-                        <Container class="customcontainer">
-                            <img src={customCard1['img']} class='img' alt="" />
-                            <div class="inputs">
-                                <div class="attackinput">{attackInput['value']}</div>
-                                <div class="healthinput">{healthInput['value']}</div>
-                            </div>
-                        </Container>
-                        <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
-                        {Card3.map((object) => <img class='img' src={object.img} />)}
-                    </div>
                     <div class="result">
                         Result
                     </div>

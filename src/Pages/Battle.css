@@ -2,6 +2,7 @@
   height: 100vh;
   text-align: center;
   background-color: bisque;
+  padding-top: 40px;
 }
 @font-face {
   font-family: 'Belwe';
@@ -113,4 +114,35 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.submit-button {
+    background: rgb(7, 208, 235);
+    border: solid 1px rgb(7, 208, 235);
+    border-radius: 12px;
+    color: white;
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+    float: center;
+}
+
+.random-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 30px;
+  width: 170px;
+}
+
+.battle-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  width: 70px;
 }

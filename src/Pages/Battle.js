@@ -107,9 +107,9 @@ function Battle() {
       : <div className="Battle">
           <Link to='/custombattle'>Custom Battle</Link>
           <br />
-          <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
-          <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
-          <button type="button" onClick={handleRandomize}>Randomize Both</button>
+          <button class="random-button" type="button" onClick={handleRandomUser}>Randomize Yourself</button>
+          <button class="random-button" type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
+          <button class="random-button" type="button" onClick={handleRandomize}>Randomize Both</button>
           <form action="" onSubmit={onSubmit}>
             <select onChange={(e) => filterCard1(e)}>
               {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
@@ -117,13 +117,13 @@ function Battle() {
             <select onChange={(e) => filterCard2(e)}>
               {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
             </select>
-            <input type="Submit" value="Battle!" />
+            <div id='imgs'>
+              {Card1.map((object) => <img class='img' src={object.img} />)}
+                <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
+              {Card2.map((object) => <img class='img' src={object.img} />)}
+            </div>
+            <input class="battle-button" type="Submit" value="Battle!" />
           </form>
-          <div id='imgs'>
-            {Card1.map((object) => <img class='img' src={object.img} />)}
-              <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
-            {Card2.map((object) => <img class='img' src={object.img} />)}
-          </div>
           <div class="result">
             Result
           </div>
