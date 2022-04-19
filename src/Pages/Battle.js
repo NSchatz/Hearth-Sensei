@@ -2,26 +2,20 @@ import './Battle.css';
 import Image1 from "../images/blankcard1.png";
 import React, { useState, useEffect, Image } from "react";
 import { Spinner, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
+
 
 let cards = '/getcards'
 
 function Battle() {
-  const [attackInput, setAttackInput] = useState('');
-  const [healthInput, setHealthInput] = useState('');
   const [Cards, setCards] = useState([]);
   const [Card1, setCard1] = useState([]);
   const [Card2, setCard2] = useState([]);
-  const [Card3, setCard3] = useState([]);
-  const [customCard1, setcustomCard] = useState([]);
   const [Result, setResult] = useState('');
-  const [customResult, setCustomResult] = useState('');
   const [isLoading, setLoading] = useState(true);
-  const [isEmpty, setEmpty] = useState(true);
   const cardback = [{"img":"https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png"}]
-  
-  
-  console.log(Card1)
 
+  
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
@@ -32,33 +26,19 @@ function Battle() {
         setLoading(false);
         setCard1(cardback)
         setCard2(cardback)
-        setCard3(cardback)
-        setcustomCard({"img":"https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png"})
       });
   }, []);
 
   function filterCard1(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard1(filtered);
-    console.log(Card1)
-    setEmpty(false);
   }
   function filterCard2(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
     console.log(Card2)
-    setEmpty(false);
   }
-  function filterCard3(e) {
-    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
-    setCard3(filtered);
-    setEmpty(false);
-  }
-  function customCard(e) {
-    const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
-    setCard1(filtered);
-    setEmpty(false);
-  }
+
   function onSubmit(event) {
     event.preventDefault();
     let card1Name, card1Attack, card1Health, card2Name, card2Attack, card2Health, winner;
@@ -98,55 +78,6 @@ function Battle() {
     submitRecentBattle(recentBattle)
   }
 
-  const handleAttack  = (e) => {
-    setAttackInput({value: e.target.value})
-    console.log(attackInput)
-    setcustomCard({"img":Image1})
-  }
-
-  const handleHealth  = (e) => {
-    setHealthInput({value: e.target.value})
-    console.log(healthInput)
-    setcustomCard({"img":Image1})
-  }
-
-  function customCardBattle(event) {
-    event.preventDefault();
-    let card1Name, card1Attack, card1Health, card2Name, card2Attack, card2Health, winner;
-    // eslint-disable-next-line array-callback-return
-      card1Attack = attackInput;
-      card1Health = healthInput;
-      card1Name = 'custom';
-    // eslint-disable-next-line array-callback-return
-    Card3.map((object) => {
-      card2Attack = object.attack;
-      card2Health = object.health;
-      card2Name = object.name;
-    });
-    if ((card1Health['value'] / card2Attack) > (card2Health / card1Attack['value'])) {
-      setCustomResult('You win!');
-      winner = 'User';
-    } else if ((card1Health['value'] / card2Attack) < (card2Health / card1Attack['value'])) {
-      setCustomResult('Opponent wins!');
-      winner = 'Opponent';
-    } else if ((card1Health['value'] / card2Attack) === (card2Health / card1Attack['value'])) {
-      setCustomResult('Whoever goes first wins!');
-      winner = 'Tie';
-    }
-    console.log(customResult)
-    // Work in progress
-    const recentBattle = {
-      "card1": card1Name,
-      "card1_attack": Number(card1Attack['value']),
-      "card1_health": Number(card1Health['value']),
-      "card2": card2Name,
-      "card2_attack": card2Attack,
-      "card2_health": card2Health,
-      "winner": winner,
-    }
-    submitRecentBattle(recentBattle)
-    console.log(recentBattle)
-  }
   function submitRecentBattle(recentBattle) {
     fetch('/savebattle', {
       method: 'POST',
@@ -156,7 +87,6 @@ function Battle() {
   }
   function randomizer() {
     const randomCard = Cards[Math.floor(Math.random() * Cards.length)];
-    setEmpty(false);
     return [randomCard];
   }
   function handleRandomOpp() {
@@ -175,61 +105,32 @@ function Battle() {
   return (
     isLoading ? <div className="Loading-spinner"><Spinner animation="border" role="status" />Loading...</div>
       : <div className="Battle">
-        <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
-        <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
-        <button type="button" onClick={handleRandomize}>Randomize Both</button>
-        <form action="" onSubmit={onSubmit}>
-          <select onChange={(e) => filterCard1(e)}>
-            {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
-          </select>
-          <select onChange={(e) => filterCard2(e)}>
-            {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
-          </select>
-          <input type="Submit" value="Battle!" />
-        </form>
-        <div id='imgs'>
-          {Card1.map((object) => <img class='img' src={object.img} />)}
-            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
-          {Card2.map((object) => <img class='img' src={object.img} />)}
+          <Link to='/custombattle'>Custom Battle</Link>
+          <br />
+          <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
+          <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
+          <button type="button" onClick={handleRandomize}>Randomize Both</button>
+          <form action="" onSubmit={onSubmit}>
+            <select onChange={(e) => filterCard1(e)}>
+              {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
+            </select>
+            <select onChange={(e) => filterCard2(e)}>
+              {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
+            </select>
+            <input type="Submit" value="Battle!" />
+          </form>
+          <div id='imgs'>
+            {Card1.map((object) => <img class='img' src={object.img} />)}
+              <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
+            {Card2.map((object) => <img class='img' src={object.img} />)}
+          </div>
+          <div class="result">
+            Result
+          </div>
+          <div class="winner-result">
+            {Result}
+          </div>
         </div>
-        <div class="result">
-          Result
-        </div>
-        <div class="winner-result">
-          {Result}
-        </div>
-        <div>
-        <form action="" onSubmit={customCardBattle}>
-          <div>Attack</div>
-          <input id="attack" type="Attack" value={attackInput.value} onChange={(e)=>handleAttack(e)} />
-          <div>Health</div>
-          <input id="health" type="Health" value={healthInput.value} onChange={(e)=>handleHealth(e)} />
-          <select onChange={(e) => filterCard3(e)}>
-            {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
-          </select>
-          
-          <input type="Submit" value="Custom Battle!" />
-        </form>
-        <div id='imgs'>
-          
-        <Container class="customcontainer">
-            <img src={customCard1['img']} class='img' alt="" />
-            <div class="inputs">
-              <div class="attackinput">{attackInput['value']}</div>
-              <div class="healthinput">{healthInput['value']}</div>
-            </div>
-        </Container>
-            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
-          {Card3.map((object) => <img class='img' src={object.img} />)}
-        </div>  
-        <div class="result">
-          Result
-        </div>
-        <div class="winner-result">
-          {customResult}
-        </div>
-        </div>
-      </div>
   );
 }
 
