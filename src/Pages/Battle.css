@@ -2,14 +2,15 @@
   height: 100vh;
   text-align: center;
   background-color: bisque;
+  padding-top: 20px;
 }
+
 @font-face {
   font-family: 'Belwe';
   src: local('MyFont'), url(../fonts/BelweBold.otf) format('opentype');
   /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' */
 }
-
 
 #c1 {
   background: none;
@@ -36,7 +37,7 @@
   text-transform: uppercase;
   border-width: 10px;
   border-style: outset;
-  border-color: rgb(252, 146, 7);
+  border-color: rgb(233, 171, 78);
 }
 #imgs{
   display: flex;
@@ -44,6 +45,7 @@
   justify-items: center;
   align-items: center;
   justify-content: center;
+  padding-top: 30px;
 }
 .img{
   width: 375px;
@@ -113,4 +115,101 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.submit-button {
+    background: rgb(7, 208, 235);
+    border: solid 1px rgb(7, 208, 235);
+    border-radius: 12px;
+    color: white;
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+    float: center;
+}
+
+.random-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 30px;
+  width: 170px;
+}
+
+.battle-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  width: 70px;
+}
+
+.custom-battle-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  width: 170px;
+}
+
+.textbox-space {
+  padding-left: 35%;
+  padding-top: 78px;
+
+}
+
+.input-container {
+  flex-direction: column;
+}
+
+.input-boxes {
+  border: 1px;
+  border-radius: 8px;
+  border-style: solid;
+  width: 220px;
+  font-size: 20px;
+  height: 30px;
+  border-color: lightgrey;
+}
+
+.ca-input-boxes {
+  border: 1px;
+  border-radius: 8px;
+  border-style: solid;
+  width: 50px;
+  font-size: 20px;
+  height: 30px;
+  border-color: lightgrey;
+}
+
+.cd-input-boxes {
+  border: 1px;
+  border-radius: 8px;
+  border-style: solid;
+  width: 240px;
+  font-size: 20px;
+  height: 30px;
+  border-color: lightgrey;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  padding-left: 25%;
+}
+
+@media only screen and (min-width: 1700px) {
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    padding-left: 32%;
+  }
 }
