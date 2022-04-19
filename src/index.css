@@ -58,3 +58,39 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.header a {
+    float: left;
+    text-align: center;
+    padding: 10px 14px;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 25px;
+    border-radius: 4px;
+    margin: 0 15px;
+}
+
+.header a:hover {
+    background-color: rgb(233, 206, 184);
+}
+
+.header a.active {
+    background-color: #79552b;
+    color: white;
+}
+
+.header-right {
+    float: center;
+    padding-top: 8px;
+}
+
+.submit-button {
+    background: rgb(7, 208, 235);
+    border: solid 1px rgb(7, 208, 235);
+    border-radius: 12px;
+    color: white;
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+    float: center;
+}

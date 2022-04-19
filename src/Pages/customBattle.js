@@ -105,7 +105,7 @@ function CustomBattle() {
     }
 
     return (
-        isLoading ? <div className="Loading-spinner"><Spinner animation="border" role="status" />Loading...</div>
+        isLoading ? <div className="Loading-spinner" class="center"><Spinner animation="border" role="status" />Loading...</div>
             : <div className="Battle">
                 <Link to='/battle'>Normal Battle</Link>
                 <br />
