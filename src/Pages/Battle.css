@@ -2,15 +2,15 @@
   height: 100vh;
   text-align: center;
   background-color: bisque;
-  padding-top: 40px;
+  padding-top: 20px;
 }
+
 @font-face {
   font-family: 'Belwe';
   src: local('MyFont'), url(../fonts/BelweBold.otf) format('opentype');
   /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' */
 }
-
 
 #c1 {
   background: none;
@@ -37,7 +37,7 @@
   text-transform: uppercase;
   border-width: 10px;
   border-style: outset;
-  border-color: rgb(252, 146, 7);
+  border-color: rgb(233, 171, 78);
 }
 #imgs{
   display: flex;
@@ -45,6 +45,7 @@
   justify-items: center;
   align-items: center;
   justify-content: center;
+  padding-top: 30px;
 }
 .img{
   width: 375px;
@@ -145,4 +146,25 @@
   cursor: pointer;
   height: 40px;
   width: 70px;
+}
+
+.custom-battle-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  width: 170px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  padding-left: 20%;
+}
+
+.textbox-space {
+  padding-left: 120px;
 }

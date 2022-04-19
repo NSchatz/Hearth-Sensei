@@ -105,7 +105,6 @@ function Battle() {
   return (
     isLoading ? <div className="Loading-spinner" class="center"><Spinner animation="border" role="status" />Loading...</div>
       : <div className="Battle">
-          <Link to='/custombattle'>Custom Battle</Link>
           <br />
           <button class="random-button" type="button" onClick={handleRandomUser}>Randomize Yourself</button>
           <button class="random-button" type="button" onClick={handleRandomOpp}>Randomize Opponent</button>

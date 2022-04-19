@@ -107,18 +107,23 @@ function CustomBattle() {
     return (
         isLoading ? <div className="Loading-spinner" class="center"><Spinner animation="border" role="status" />Loading...</div>
             : <div className="Battle">
-                <Link to='/battle'>Normal Battle</Link>
                 <br />
                 <button class="random-button" type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
                 <div>
                     <form action="" onSubmit={customCardBattle}>
-                        <div>Attack</div>
-                        <input id="attack" type="Attack" value={attackInput.value} onChange={(e) => handleAttack(e)} />
-                        <div>Health</div>
-                        <input id="health" type="Health" value={healthInput.value} onChange={(e) => handleHealth(e)} />
-                        <select onChange={(e) => filterCard3(e)}>
-                            {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
-                        </select>
+                        <div class="card-container">
+                            <div>Attack</div>
+                            <input id="attack" type="Attack" value={attackInput.value} onChange={(e) => handleAttack(e)} />
+                            <div>Health</div>
+                            <input id="health" type="Health" value={healthInput.value} onChange={(e) => handleHealth(e)} />
+                            <div class="textbox-space">
+                                <select onChange={(e) => filterCard3(e)}>
+                                    {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
+                                </select>
+                            </div>
+
+                        </div>
+
                         <div id='imgs'>
                             <Container class="customcontainer">
                                 <img src={customCard1['img']} class='img' alt="" />
@@ -130,7 +135,7 @@ function CustomBattle() {
                             <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
                             {Card3.map((object) => <img class='img' src={object.img} />)}
                         </div>
-                        <input class="battle-button" type="Submit" value="Custom Battle!" />
+                        <input class="custom-battle-button" type="Submit" value="Custom Battle!" />
                     </form>
 
                     <div class="result">
