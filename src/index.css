@@ -5,10 +5,48 @@
 }
 
 .Navbar {
+    height: 80px;
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    background: #191e2d1a;
+    justify-content: space-between;
+    padding: 20px 5%;
+    background-color: bisque;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75);
+}
+
+.NavTabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NavLinks {
+    list-style: none;
+    display: flex;
+}
+
+.NavLinks a {
+    font-weight: 500;
+    color: #10162e;
+    text-decoration: none;
+}
+
+.NavLinks li {
+    padding: 0px 20px;
+}
+
+.NavLinks li a {
+    transition: color 0.3s ease 0s;
+}
+
+.NavLinks li a:hover {
+    color: #2b17de;
+}
+
+ul.NavLinks {
+    margin-bottom: 0;
+    padding-left: 0;
 }
 
 body {
@@ -21,36 +59,19 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.header {
-    overflow: hidden;
-    background-color: #e6a479;
-    padding: 30px 20px;
-    border-width: 6px;
-    border-style: outset;
-    border-color: rgb(119, 87, 44);
-
-}
-
 .header a {
     float: left;
-    color: black;
     text-align: center;
     padding: 10px 14px;
     text-decoration: none;
-    font-size: 20px; 
+    font-size: 20px;
     line-height: 25px;
     border-radius: 4px;
     margin: 0 15px;
 }
 
-.header a.logo {
-    font-size: 25px;
-    font-weight: bold;
-}
-
 .header a:hover {
     background-color: rgb(233, 206, 184);
-    color: black;
 }
 
 .header a.active {
