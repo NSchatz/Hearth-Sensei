@@ -110,10 +110,10 @@ function Battle() {
           <button class="random-button" type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
           <button class="random-button" type="button" onClick={handleRandomize}>Randomize Both</button>
           <form action="" onSubmit={onSubmit}>
-            <select onChange={(e) => filterCard1(e)}>
+            <select class="input-boxes" onChange={(e) => filterCard1(e)}>
               {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
             </select>
-            <select onChange={(e) => filterCard2(e)}>
+            <select class="input-boxes" onChange={(e) => filterCard2(e)}>
               {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
             </select>
             <div id='imgs'>

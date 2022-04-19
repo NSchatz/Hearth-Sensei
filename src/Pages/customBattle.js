@@ -112,12 +112,15 @@ function CustomBattle() {
                 <div>
                     <form action="" onSubmit={customCardBattle}>
                         <div class="card-container">
-                            <div>Attack</div>
-                            <input id="attack" type="Attack" value={attackInput.value} onChange={(e) => handleAttack(e)} />
-                            <div>Health</div>
-                            <input id="health" type="Health" value={healthInput.value} onChange={(e) => handleHealth(e)} />
+                            <div class="input-container">
+                                <div>Attack</div>
+                                <input class="ca-input-boxes" id="attack" type="Attack" value={attackInput.value} onChange={(e) => handleAttack(e)} />
+                                <div>Health</div>
+                                <input class="ca-input-boxes" id="health" type="Health" value={healthInput.value} onChange={(e) => handleHealth(e)} />
+                            </div>
+
                             <div class="textbox-space">
-                                <select onChange={(e) => filterCard3(e)}>
+                                <select class="cd-input-boxes" onChange={(e) => filterCard3(e)}>
                                     {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
                                 </select>
                             </div>
