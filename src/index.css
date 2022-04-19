@@ -20,3 +20,56 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.header {
+    overflow: hidden;
+    background-color: #e6a479;
+    padding: 30px 20px;
+    border-width: 6px;
+    border-style: outset;
+    border-color: rgb(119, 87, 44);
+
+}
+
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 10px 14px;
+    text-decoration: none;
+    font-size: 20px; 
+    line-height: 25px;
+    border-radius: 4px;
+    margin: 0 15px;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.header a:hover {
+    background-color: rgb(233, 206, 184);
+    color: black;
+}
+
+.header a.active {
+    background-color: #79552b;
+    color: white;
+}
+
+.header-right {
+    float: center;
+    padding-top: 8px;
+}
+
+.submit-button {
+    background: rgb(7, 208, 235);
+    border: solid 1px rgb(7, 208, 235);
+    border-radius: 12px;
+    color: white;
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+    float: center;
+}
