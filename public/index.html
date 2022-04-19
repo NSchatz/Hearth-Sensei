@@ -14,9 +14,15 @@
 
 <body>
   <div class="Navbar header">
-    <a href="/">HearthSensei</a>
-    <a href="/Profile">Profile</a>
-    <a href="/battle">Battle</a>
+    <a href="/"><img src="%PUBLIC_URL%/hearth-sensei_logo.png" height="60"></a>
+    <div class="NavTabs">
+      <ul class="NavLinks">
+        <li><a href="/Profile">Profile</a></li>
+        <li><a href="/battle">Battle</a></li>
+        <li><a href="/custombattle">Custom Battle</a></li>
+        <li><a href="https://github.com/NSchatz/Hearth-Sensei">Github</a></li>
+      </ul>
+    </div>
     <form method="POST" action="/logout">
       <input class="submit-button" id="submit" type="submit" value="Logout">
     </form>
