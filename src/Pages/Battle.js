@@ -103,7 +103,7 @@ function Battle() {
   }
 
   return (
-    isLoading ? <div className="Loading-spinner" class="center"><Spinner animation="border" role="status" />Loading...</div>
+    isLoading ? <div className="Loading-spinner" class="center"><Spinner animation="border" role="status" /><br />Loading...</div>
       : <div className="Battle">
         <br />
         <button class="random-button" type="button" onClick={handleRandomUser}>Randomize Yourself</button>
