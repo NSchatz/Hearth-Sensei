@@ -1,15 +1,16 @@
 .Battle {
   height: 100vh;
   text-align: center;
-  background-color: bisque;
+  background-color: #fdf1e6;
+  padding-top: 20px;
 }
+
 @font-face {
   font-family: 'Belwe';
   src: local('MyFont'), url(../fonts/BelweBold.otf) format('opentype');
   /* other formats include: 'woff2', 'truetype, 'opentype',
                             'embedded-opentype', and 'svg' */
 }
-
 
 #c1 {
   background: none;
@@ -36,20 +37,24 @@
   text-transform: uppercase;
   border-width: 10px;
   border-style: outset;
-  border-color: rgb(252, 146, 7);
+  border-color: rgb(233, 171, 78);
 }
-#imgs{
+
+#imgs {
   display: flex;
   flex-direction: row;
   justify-items: center;
   align-items: center;
   justify-content: center;
+  padding-top: 30px;
 }
-.img{
+
+.img {
   width: 375px;
   height: 522px;
 }
-.customcard{
+
+.customcard {
   position: absolute;
   top: 0;
   left: 0;
@@ -58,18 +63,21 @@
   justify-content: center;
   align-items: center;
 }
-.container{
+
+.container {
   width: 375px;
   height: 522px;
   margin: 0;
   padding: 0;
-  
+
 }
-.inputs{
+
+.inputs {
   display: flex;
   flex-direction: row;
 }
-.attackinput{
+
+.attackinput {
   font-family: Belwe;
   position: relative;
   bottom: 0;
@@ -83,7 +91,8 @@
   width: 80px;
   -webkit-text-stroke: 2px black;
 }
-.healthinput{
+
+.healthinput {
   font-family: Belwe;
   position: relative;
   bottom: 0;
@@ -113,4 +122,101 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.submit-button {
+  background: rgb(7, 208, 235);
+  border: solid 1px rgb(7, 208, 235);
+  border-radius: 12px;
+  color: white;
+  width: 70px;
+  height: 40px;
+  cursor: pointer;
+  float: center;
+}
+
+.random-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 30px;
+  width: 170px;
+}
+
+.battle-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  width: 70px;
+}
+
+.custom-battle-button {
+  background: brown;
+  border: brown;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  width: 170px;
+}
+
+.textbox-space {
+  padding-left: 35%;
+  padding-top: 78px;
+
+}
+
+.input-container {
+  flex-direction: column;
+}
+
+.input-boxes {
+  border: 1px;
+  border-radius: 8px;
+  border-style: solid;
+  width: 300px;
+  font-size: 20px;
+  height: 30px;
+  border-color: lightgrey;
+}
+
+.ca-input-boxes {
+  border: 1px;
+  border-radius: 8px;
+  border-style: solid;
+  width: 50px;
+  font-size: 20px;
+  height: 30px;
+  border-color: lightgrey;
+}
+
+.cd-input-boxes {
+  border: 1px;
+  border-radius: 8px;
+  border-style: solid;
+  width: 300px;
+  font-size: 20px;
+  height: 30px;
+  border-color: lightgrey;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  padding-left: 25%;
+}
+
+@media only screen and (min-width: 1700px) {
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    padding-left: 32%;
+  }
 }

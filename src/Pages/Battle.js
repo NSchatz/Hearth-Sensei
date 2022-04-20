@@ -13,9 +13,9 @@ function Battle() {
   const [Card2, setCard2] = useState([]);
   const [Result, setResult] = useState('');
   const [isLoading, setLoading] = useState(true);
-  const cardback = [{"img":"https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png"}]
+  const cardback = [{ "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png" }]
 
-  
+
   useEffect(() => {
     fetch(cards, {
       method: 'POST',
@@ -48,14 +48,14 @@ function Battle() {
       card1Health = object.health;
       card1Name = object.name;
     });
-    
+
     // eslint-disable-next-line array-callback-return
     Card2.map((object) => {
       card2Attack = object.attack;
       card2Health = object.health;
       card2Name = object.name;
     });
-    
+
     if ((card1Health / card2Attack) > (card2Health / card1Attack)) {
       setResult('You win!');
       winner = 'User';
@@ -105,32 +105,33 @@ function Battle() {
   return (
     isLoading ? <div className="Loading-spinner" class="center"><Spinner animation="border" role="status" />Loading...</div>
       : <div className="Battle">
-          <Link to='/custombattle'>Custom Battle</Link>
-          <br />
-          <button type="button" onClick={handleRandomUser}>Randomize Yourself</button>
-          <button type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
-          <button type="button" onClick={handleRandomize}>Randomize Both</button>
-          <form action="" onSubmit={onSubmit}>
-            <select onChange={(e) => filterCard1(e)}>
-              {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
-            </select>
-            <select onChange={(e) => filterCard2(e)}>
-              {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
-            </select>
-            <input type="Submit" value="Battle!" />
-          </form>
+        <br />
+        <button class="random-button" type="button" onClick={handleRandomUser}>Randomize Yourself</button>
+        <button class="random-button" type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
+        <button class="random-button" type="button" onClick={handleRandomize}>Randomize Both</button>
+        <form action="" onSubmit={onSubmit}>
+          <select defaultValue={'DEFAULT'} class="input-boxes" onChange={(e) => filterCard1(e)}>
+            <option value="DEFAULT">Please Select Your Card!</option>
+            {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
+          </select>
+          <select defaultValue={'DEFAULT'} class="input-boxes" onChange={(e) => filterCard2(e)}>
+            <option value="DEFAULT">Please Select Opponent's Card!</option>
+            {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
+          </select>
           <div id='imgs'>
             {Card1.map((object) => <img class='img' src={object.img} />)}
-              <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
+            <img src="https://www.freepnglogos.com/uploads/vs-png/vs-fire-icon-png-logo-Image-10.png" width="200" />
             {Card2.map((object) => <img class='img' src={object.img} />)}
           </div>
-          <div class="result">
-            Result
-          </div>
-          <div class="winner-result">
-            {Result}
-          </div>
+          <input class="battle-button" type="Submit" value="Battle!" />
+        </form>
+        <div class="result">
+          Result
         </div>
+        <div class="winner-result">
+          {Result}
+        </div>
+      </div>
   );
 }
 
