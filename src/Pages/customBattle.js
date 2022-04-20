@@ -35,7 +35,7 @@ function CustomBattle() {
         const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
         setCard3(filtered);
     }
-   
+
     const handleAttack = (e) => {
         setAttackInput({ value: e.target.value })
         console.log(attackInput)
@@ -120,7 +120,8 @@ function CustomBattle() {
                             </div>
 
                             <div class="textbox-space">
-                                <select class="cd-input-boxes" onChange={(e) => filterCard3(e)}>
+                                <select defaultValue={'DEFAULT'} class="cd-input-boxes" onChange={(e) => filterCard3(e)}>
+                                    <option value="DEFAULT">Please Select Opponent's Card!</option>
                                     {Cards.map((item) => <option id='card3' key={item} value={item.cardId}>{item.name}</option>)}
                                 </select>
                             </div>
