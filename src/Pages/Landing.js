@@ -1,5 +1,7 @@
 import './Landing.css';
 import React from "react";
+import ChevronDown from '../images/chevron-down.png';
+import CardBack from '../images/card-back.png';
 
 function Landing() {
 
@@ -11,7 +13,7 @@ function Landing() {
           <p>Determine the strength of over hundreds of Hearthstone cards based on their raw stat numbers and share your results with other users.</p>
         </div>
         <a href="#about">
-          <img src={"https://tinyurl.com/3mb9ysju"} height={40} width={40} className="ChevronDown" />
+          <img src={ChevronDown} height={40} width={40} className="ChevronDown" />
         </a>
       </div>
       <section id="about" className="AboutSection">
@@ -23,7 +25,7 @@ function Landing() {
             All of this data is then stored in your profile, where you can view it for future reference and even see what others have tested.
           </p>
         </div>
-        <img src={"https://tinyurl.com/2wpw4jy3"} height={400} className="CardBack" />
+        <img src={CardBack} height={400} className="CardBack" />
       </section>
       <section id="authors" className="AuthorsSection">
         <a href="https://github.com/NSchatz/Hearth-Sensei">
