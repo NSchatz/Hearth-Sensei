@@ -114,9 +114,9 @@ function CustomBattle() {
                         <div class="card-container">
                             <div class="input-container">
                                 <div>Attack</div>
-                                <input class="ca-input-boxes" id="attack" type="Attack" value={attackInput.value} onChange={(e) => handleAttack(e)} />
+                                <input class="ca-input-boxes" id="attack" type="number" value={attackInput.value} onChange={(e) => handleAttack(e)} />
                                 <div>Health</div>
-                                <input class="ca-input-boxes" id="health" type="Health" value={healthInput.value} onChange={(e) => handleHealth(e)} />
+                                <input class="ca-input-boxes" id="health" type="number" value={healthInput.value} onChange={(e) => handleHealth(e)} />
                             </div>
 
                             <div class="textbox-space">
