@@ -9,26 +9,26 @@ function HistoryRow(props) {
             <td>
                 {battle.card1}
                 <hr />
-                <p>
+                <p class='battle-card-attack'>
                     Attack: {battle.card1_attack}
                 </p>
                 <br></br>
-                <p>
+                <p class='battle-card-health'>
                     Health: {battle.card1_health}
                 </p>
             </td>
             <td>
                 {battle.card2}
                 <hr />
-                <p>
+                <p class='battle-card-attack'>
                     Attack: {battle.card2_attack}
                 </p>
                 <br></br>
-                <p>
+                <p class='battle-card-health'>
                     Health: {battle.card2_health}
                 </p>
             </td>
-            <td>
+            <td class='battle-card-winner'>
                 {battle.winner}
             </td>
             <td>

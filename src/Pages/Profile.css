@@ -1,15 +1,17 @@
 table {
-    border-color: black;
+    border-color: rgb(87, 48, 1);
     border-width: 1px;
     border-style: solid;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 6px;
+    border-collapse: separate;
 }
 
 td {
-    border-color: black;
-    border-width: 1px;
+    border-color: rgb(87, 48, 1);
+    border-width: 3px;
     border-style: solid;
 }
 
@@ -19,4 +21,17 @@ tr {
 
 body {
     text-align: center;
+    background-color: bisque;
+}
+
+.battle-card-attack {
+    color: red;
+}
+
+.battle-card-health {
+    color: green;
+}
+
+.battle-card-winner {
+    color: darkgoldenrod;
 }
