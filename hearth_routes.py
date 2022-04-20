@@ -1,9 +1,10 @@
 """hearthstone routes"""
 import os
+from urllib import response
 import flask
 import requests
 from flask_login import login_required, current_user
-from models import History, db
+from models import History, Users, db
 
 headers = {  # pylint:disable=invalid-name
     "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
@@ -18,17 +19,8 @@ hearth_routes = flask.Blueprint(  # pylint:disable=invalid-name
 )
 
 
-@hearth_routes.route("/", methods=["POST", "GET"])
-@login_required
-def index():
-    """render index"""
-    return flask.render_template("index.html")
-
-
-@hearth_routes.route("/battles")
-def battles():
-    """Gets battle history"""
-    battles = History.query.filter_by(username=current_user.username).all()
+def getHistory(user):
+    battles = History.query.filter_by(username=user).all()
     battle_history = []
     for battle in battles:
         id = battle.id
@@ -51,6 +43,43 @@ def battles():
                 "winner": winner,
             }
         )
+
+    return battle_history
+
+
+@hearth_routes.route("/", methods=["POST", "GET"])
+@login_required
+def index():
+    """render index"""
+    return flask.render_template("index.html")
+
+
+@hearth_routes.route("/battles")
+def battles():
+    """Gets battle history"""
+    battle_history = getHistory(current_user.username)
+
+    return flask.jsonify(battle_history)
+
+
+@hearth_routes.route("/users")
+def users():
+    """Gets a list of users"""
+    users = Users.query.all()
+    userList = []
+    for user in users:
+        username = user.username
+        userList.append({"username": username})
+    return flask.jsonify(userList)
+
+
+@hearth_routes.route("/userBattles", methods=["GET", "POST"])
+def userBattles():
+    """Get battle history for different users"""
+    response = flask.request.json
+    user = response.get("username")
+    battle_history = getHistory(user)
+
     return flask.jsonify(battle_history)
 
 
