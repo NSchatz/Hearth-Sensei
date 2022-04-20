@@ -70,6 +70,8 @@ section p {
 .AuthorsSection {
   display: flex;
   flex-direction: row;
+  height: 200px;
+  margin-bottom: 100px;
 }
 
 .CardBack {
