@@ -1,6 +1,9 @@
 
 .login-background {
     background-color: bisque;
+    background-image: url('/static/react/Dr._Boom_full.png');
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
 }
 
 .login-container {
@@ -70,3 +73,14 @@
 .flavor-text {
     color: darkgrey;
 }
+
+.image-size {
+    width: auto;
+    height: auto;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
