@@ -29,10 +29,10 @@ function HistoryRow(props) {
                 </p>
             </td>
             <td class='battle-card-winner'>
-                {battle.winner}
+                <b>{battle.winner}</b>
             </td>
             <td>
-                <input type="button" value="Delete" onClick={props.onClick} />
+                <input class="delete-button" type="button" value="Delete" onClick={props.onClick} />
             </td>
         </tr>
     );
@@ -92,7 +92,7 @@ function HistoryTable() {
                 </tr>
                 {historyRows()}
                 <tr>
-                    <input type="button" value="Delete All Entries" onClick={() => deleteAll()} />
+                    <input class="deleteall-button" type="button" value="Delete All Entries" onClick={() => deleteAll()} />
                 </tr>
             </table>
         </div>
@@ -102,7 +102,7 @@ function HistoryTable() {
 function Profile() {
     return (
         <div className='Profile'>
-            <h1>Profile</h1>
+            <h1 class="profile-header">Profile</h1>
             <HistoryTable />
         </div>
     );

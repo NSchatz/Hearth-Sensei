@@ -1,6 +1,10 @@
+.profile-header{
+    padding-top: 20px;
+}
+
 table {
-    border-color: rgb(87, 48, 1);
-    border-width: 1px;
+    border-color: rgb(114, 64, 2);
+    border-width: 2px;
     border-style: solid;
     text-align: center;
     margin-left: auto;
@@ -11,7 +15,7 @@ table {
 
 td {
     border-color: rgb(87, 48, 1);
-    border-width: 3px;
+    border-width: 4px;
     border-style: solid;
 }
 
@@ -21,7 +25,7 @@ tr {
 
 body {
     text-align: center;
-    background-color: bisque;
+    background-color: #fdf1e6;
 }
 
 .battle-card-attack {
@@ -34,4 +38,24 @@ body {
 
 .battle-card-winner {
     color: darkgoldenrod;
+}
+
+.delete-button {
+    background: brown;
+    border: brown;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    height: 40px;
+    width: 70px;
+}
+
+  .deleteall-button {
+    background: brown;
+    border: brown;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    height: 30px;
+    width: 170px;
 }

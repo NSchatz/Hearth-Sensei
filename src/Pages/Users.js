@@ -1,4 +1,4 @@
-import './Profile.css';
+import './Users.css';
 import React, { useState, useEffect, useRef } from "react";
 
 function MainProfile(props) {
@@ -43,7 +43,7 @@ function MainProfile(props) {
                         </p>
                     </td>
                     <td class="battle-card-winner">
-                        {battle.winner}
+                        <b>{battle.winner}</b>
                     </td>
                 </tr>
             );
@@ -117,10 +117,10 @@ function UserProfile() {
     return (
         <div>
             <label for="users">Pick a user</label>
-            <select name="users" id="users" ref={username}>
+            <select class="dd-input-boxes" name="users" id="users" ref={username}>
                 {userList()}
             </select>
-            <input type="submit" value="Load Profile" onClick={() => profileSelection()}></input>
+            <input class="load-button" type="submit" value="Load Profile" onClick={() => profileSelection()}></input>
             <br></br>
             {loadProfile()}
         </div>
@@ -130,7 +130,7 @@ function UserProfile() {
 function Users() {
     return (
         <div className='Users'>
-            <h1>Users</h1>
+            <h1 class="user-header">Users</h1>
             <UserProfile />
         </div>
     );
