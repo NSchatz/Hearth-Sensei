@@ -13,6 +13,7 @@ function Battle() {
   const [Card2, setCard2] = useState([]);
   const [Result, setResult] = useState('');
   const [isLoading, setLoading] = useState(true);
+  const [isEmpty, setisEmpty] = useState(true);
   const cardback = [{ "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png" }]
 
 
@@ -58,12 +59,15 @@ function Battle() {
 
     if ((card1Health / card2Attack) > (card2Health / card1Attack)) {
       setResult('You win!');
+      setisEmpty(false);
       winner = 'User';
     } else if ((card1Health / card2Attack) < (card2Health / card1Attack)) {
       setResult('Opponent wins!');
+      setisEmpty(false);
       winner = 'Opponent';
     } else if ((card1Health / card2Attack) === (card2Health / card1Attack)) {
       setResult('Whoever goes first wins!');
+      setisEmpty(false);
       winner = 'Tie';
     }
     const recentBattle = {
@@ -125,12 +129,20 @@ function Battle() {
           </div>
           <input class="battle-button" type="Submit" value="Battle!" />
         </form>
-        <div class="result">
-          Result
-        </div>
-        <div class="winner-result">
-          {Result}
-        </div>
+        
+        {isEmpty ? <></> :
+          <div>
+            <div class="result">
+              Result
+            </div>
+            <div class="winner-result">
+              {Result}
+            </div>
+          </div>
+        }
+        
+          
+        
       </div>
   );
 }
