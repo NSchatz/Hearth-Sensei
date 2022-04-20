@@ -14,7 +14,7 @@ function Battle() {
   const [Result, setResult] = useState('');
   const [isLoading, setLoading] = useState(true);
   const [isEmpty, setisEmpty] = useState(true);
-  const cardback = [{ "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png" }]
+  const cardback = [{ "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/6c7389262b8a7057aafcf8d75e55f452250ccd8b4e2dfcfd01f1aa8f5f21b17d.png" }]
 
 
   useEffect(() => {
