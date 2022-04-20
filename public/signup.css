@@ -1,6 +1,10 @@
 
 .signup-background {
     background-color: bisque;
+    background-image: url('/static/react/Mysterious_Challenger_full.png');
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+    background-size: 50%;
 }
 
 .signup-container {
