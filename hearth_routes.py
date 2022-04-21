@@ -1,6 +1,5 @@
 """hearthstone routes"""
 import os
-from urllib import response
 import flask
 import requests
 from flask_login import login_required, current_user
@@ -48,13 +47,13 @@ def getHistory(user):
 
 
 @hearth_routes.route("/", methods=["POST", "GET"])
-@login_required
 def index():
     """render index"""
     return flask.render_template("index.html")
 
 
 @hearth_routes.route("/battles")
+@login_required
 def battles():
     """Gets battle history"""
     battle_history = getHistory(current_user.username)
@@ -63,6 +62,7 @@ def battles():
 
 
 @hearth_routes.route("/users")
+@login_required
 def users():
     """Gets a list of users"""
     users = Users.query.all()
@@ -74,6 +74,7 @@ def users():
 
 
 @hearth_routes.route("/userBattles", methods=["GET", "POST"])
+@login_required
 def userBattles():
     """Get battle history for different users"""
     response = flask.request.json
@@ -84,6 +85,7 @@ def userBattles():
 
 
 @hearth_routes.route("/delete", methods=["GET", "POST"])
+@login_required
 def delete():
     response = flask.request.json
     id = response.get("id")
@@ -94,6 +96,7 @@ def delete():
 
 
 @hearth_routes.route("/deleteAll", methods=["GET", "POST"])
+@login_required
 def deleteAll():
     History.query.filter_by(username=current_user.username).delete()
     db.session.commit()
@@ -102,6 +105,7 @@ def deleteAll():
 
 
 @hearth_routes.route("/getcards", methods=["GET", "POST"])
+@login_required
 def getcards():
     """Gets cards"""
     response1 = requests.request("GET", url, headers=headers)
@@ -111,6 +115,7 @@ def getcards():
 
 
 @hearth_routes.route("/savebattle", methods=["POST"])
+@login_required
 def save_history():
     """Saves history"""
     recent_battle = flask.request.get_json()
@@ -130,3 +135,38 @@ def save_history():
     db.session.add(battle)  # pylint:disable=no-member
     db.session.commit()  # pylint:disable=no-member
     return {"code": 200, "description": "Successfully submitted."}
+
+
+"""
+To avoid using tokens so that react app verifies if user is logged in from flask,
+this is a workaround by rendering each page through flask then react will display
+the corresponding page component.
+"""
+
+
+@hearth_routes.route("/Profile")
+@login_required
+def profile_component():
+    """Profile route"""
+    return flask.render_template("index.html")
+
+
+@hearth_routes.route("/Users")
+@login_required
+def users_component():
+    """User route"""
+    return flask.render_template("index.html")
+
+
+@hearth_routes.route("/battle")
+@login_required
+def battle_component():
+    """Battle route"""
+    return flask.render_template("index.html")
+
+
+@hearth_routes.route("/custombattle")
+@login_required
+def custom_battle_component():
+    """CustomBattle route"""
+    return flask.render_template("index.html")
