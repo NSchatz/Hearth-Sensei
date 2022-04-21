@@ -89,13 +89,39 @@ code {
     padding-top: 8px;
 }
 
-.submit-button {
-    background: rgb(7, 208, 235);
+.logout-button,
+.login-button {
+    /*background: rgb(7, 208, 235);
     border: solid 1px rgb(7, 208, 235);
     border-radius: 12px;
     color: white;
     width: 70px;
     height: 40px;
     cursor: pointer;
-    float: center;
+    float: center;*/
+
+    box-shadow: inset 0px -3px 7px 0px #29bbff;
+    background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+    background-color: #2dabf9;
+    border-radius: 2rem;
+    border: 0;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 9px 15px;
+    text-decoration: none;
+}
+
+.logout-button:hover,
+.login-button:hover {
+    background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+    background-color: #0688fa;
+}
+
+.logout-button:active,
+.login-button:active {
+    position: relative;
+    top: 1px;
 }

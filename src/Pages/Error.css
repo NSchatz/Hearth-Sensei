@@ -1,3 +1,29 @@
 .Error {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fdf1e6;
+}
+
+.Overlay {
+    height: 90vh;
+    background-image: url("../images/error-bg.png");
+    background-position: center;
+    background-size: 700px;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+}
+
+.ErrorText {
+    padding: 2rem;
+}
+
+.Overlay h1 {
+    font-size: 4rem;
+    color: #10162e;
+    text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;
+}
+
+.Overlay p {
+    font-size: 1.25rem;
+    color: #10162e;
 }
