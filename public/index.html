@@ -24,9 +24,15 @@
         <li><a href="https://github.com/NSchatz/Hearth-Sensei">Github</a></li>
       </ul>
     </div>
+    {% if current_user.is_authenticated %}
     <form method="POST" action="/logout">
       <input class="submit-button" id="submit" type="submit" value="Logout">
     </form>
+    {% else %}
+    <form action="/login">
+      <input class="login-button" id="submit" type="submit" value="Login" />
+    </form>
+    {% endif %}
   </div>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
