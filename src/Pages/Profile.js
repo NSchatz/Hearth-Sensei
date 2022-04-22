@@ -18,7 +18,7 @@ function Profile() {
 
     return (
         <div className='Profile'>
-            <h1 class="profile-header">Profile</h1>
+            <h1 className="profile-header">Profile</h1>
             <ProfileTemplate name={user.username} value={true} />
         </div>
     );
