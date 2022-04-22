@@ -46,7 +46,7 @@ function UserProfile() {
     return (
         <div>
             <label for="users">Pick a user</label>
-            <select class="dd-input-boxes" name="users" id="users" ref={username}>
+            <select class="dd-input-boxes" name="users" id="users" data-testid="users-test" ref={username}>
                 {userList()}
             </select>
             <input class="load-button" type="submit" value="Load Profile" onClick={() => profileSelection()}></input>
