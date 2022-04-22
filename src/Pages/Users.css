@@ -48,14 +48,16 @@ body {
     cursor: pointer;
     height: 40px;
     width: 130px;
+    margin-left: 20px;
 }
 
 .dd-input-boxes {
     border: 1px;
     border-radius: 8px;
     border-style: solid;
-    width: 100px;
+    width: 150px;
     font-size: 20px;
     height: 30px;
     border-color: lightgrey;
-  }
+    margin-left: 10px;
+}
