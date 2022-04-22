@@ -8,8 +8,6 @@
 @font-face {
   font-family: 'Belwe';
   src: local('MyFont'), url(../fonts/BelweBold.otf) format('opentype');
-  /* other formats include: 'woff2', 'truetype, 'opentype',
-                            'embedded-opentype', and 'svg' */
 }
 
 #c1 {
@@ -47,6 +45,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 30px;
+  margin-left: -20px;
 }
 
 .img {
@@ -142,7 +141,10 @@
   color: white;
   cursor: pointer;
   height: 30px;
-  width: 170px;
+  width: 180px;
+  margin-left: 5px;
+  padding: 5px;
+  text-align: center;
 }
 
 .battle-button {
@@ -175,7 +177,7 @@
   flex-direction: column;
 }
 
-.input-boxes {
+.input-boxes-user {
   border: 1px;
   border-radius: 8px;
   border-style: solid;
@@ -183,6 +185,20 @@
   font-size: 20px;
   height: 30px;
   border-color: lightgrey;
+  margin-left: -60px;
+  margin-top: 5px;
+}
+
+.input-boxes-opponent {
+  border: 1px;
+  border-radius: 8px;
+  border-style: solid;
+  width: 300px;
+  font-size: 20px;
+  height: 30px;
+  border-color: lightgrey;
+  margin-left: 260px;
+  margin-top: 5px;
 }
 
 .ca-input-boxes {

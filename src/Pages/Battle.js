@@ -14,7 +14,7 @@ function Battle() {
   const [Result, setResult] = useState('');
   const [isLoading, setLoading] = useState(true);
   const [isEmpty, setisEmpty] = useState(true);
-  const cardback = [{ "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/6c7389262b8a7057aafcf8d75e55f452250ccd8b4e2dfcfd01f1aa8f5f21b17d.png" }]
+  const cardback = [{ "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a56562dad5da22c759f74601fe4d7d4ca1089577d5c837752ec13248b0ecb68c.png" }]
 
 
   useEffect(() => {
@@ -37,7 +37,6 @@ function Battle() {
   function filterCard2(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
     setCard2(filtered);
-    console.log(Card2)
   }
 
   function onSubmit(event) {
@@ -79,15 +78,21 @@ function Battle() {
       "card2_health": card2Health,
       "winner": winner,
     }
-    submitRecentBattle(recentBattle)
+    if(card1Name !== undefined && card2Name !== undefined) {
+      submitRecentBattle(recentBattle);
+    }
+    else {
+      alert("Please select a card for each side");
+    }
   }
-
   function submitRecentBattle(recentBattle) {
-    fetch('/savebattle', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ recentBattle }),
-    });
+    if(Card1 !== undefined && Card2 !== undefined) {
+      fetch('/savebattle', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ recentBattle }),
+      });
+    }
   }
   function randomizer() {
     const randomCard = Cards[Math.floor(Math.random() * Cards.length)];
@@ -114,11 +119,11 @@ function Battle() {
         <button class="random-button" type="button" onClick={handleRandomOpp}>Randomize Opponent</button>
         <button class="random-button" type="button" onClick={handleRandomize}>Randomize Both</button>
         <form action="" onSubmit={onSubmit}>
-          <select defaultValue={'DEFAULT'} class="input-boxes" onChange={(e) => filterCard1(e)}>
+          <select defaultValue={'DEFAULT'} class="input-boxes-user" onChange={(e) => filterCard1(e)}>
             <option value="DEFAULT">Please Select Your Card!</option>
             {Cards.map((item) => <option id='card1' key={item} value={item.cardId}>{item.name}</option>)}
           </select>
-          <select defaultValue={'DEFAULT'} class="input-boxes" onChange={(e) => filterCard2(e)}>
+          <select defaultValue={'DEFAULT'} class="input-boxes-opponent" onChange={(e) => filterCard2(e)}>
             <option value="DEFAULT">Please Select Opponent's Card!</option>
             {Cards.map((item) => <option id='card2' key={item} value={item.cardId}>{item.name}</option>)}
           </select>

@@ -7,8 +7,8 @@ function UserProfile() {
     const [profile, setProfile] = useState("");
     const username = useRef();
     function getUsers() {
-        fetch('/users').
-            then((response) => response.json()).
+        fetch('/users').    /* eslint-disable */
+            then((response) => response.json()). /* eslint-disable */
             then((data) => setUsers(data));
     }
 
@@ -32,7 +32,7 @@ function UserProfile() {
     }
 
     function loadProfile() {
-        if (profile == "") {
+        if (profile == "") { /* eslint-disable */
             return (
                 <p>Profile not selected</p>
             );

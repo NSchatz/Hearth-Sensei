@@ -1,7 +1,7 @@
+import os
 import flask
 from flask_login import LoginManager
 from dotenv import load_dotenv, find_dotenv
-import os
 from models import Users, db
 from account_routes import account_routes
 from hearth_routes import hearth_routes
@@ -26,7 +26,7 @@ login_manager.init_app(app)
 
 
 @login_manager.user_loader
-def load_user(id):
+def load_user(id):  # pylint:disable=invalid-name
     return Users.query.get(int(id))
 
 
@@ -35,7 +35,7 @@ app.register_blueprint(hearth_routes)
 
 
 @app.errorhandler(404)
-def not_found(e):
+def not_found(e):  # pylint:disable=invalid-name
     """this is necessary for react router to work with flask"""
     return flask.render_template("index.html")
 
