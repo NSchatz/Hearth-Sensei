@@ -18,11 +18,11 @@ hearth_routes = flask.Blueprint(  # pylint:disable=invalid-name
 )
 
 
-def getHistory(user):
+def getHistory(user):  # pylint:disable=invalid-name
     battles = History.query.filter_by(username=user).all()
     battle_history = []
     for battle in battles:
-        id = battle.id
+        id = battle.id  # pylint:disable=invalid-name
         card1 = battle.card1
         card1_attack = battle.card1_attack
         card1_health = battle.card1_health
@@ -54,7 +54,7 @@ def index():
 
 @hearth_routes.route("/mainUser")
 @login_required
-def mainUser():
+def mainUser():  # pylint:disable=invalid-name
     user = current_user.username
 
     return flask.jsonify({"username": user})
@@ -65,7 +65,7 @@ def mainUser():
 def users():
     """Gets a list of users"""
     users = Users.query.all()
-    userList = []
+    userList = []  # pylint:disable=invalid-name
     for user in users:
         username = user.username
         userList.append({"username": username})
@@ -92,7 +92,7 @@ def delete():
         History.query.filter_by(username=current_user.username).delete()
     else:
         History.query.filter_by(id=selection).delete()
-    db.session.commit()
+    db.session.commit()  # pylint:disable=no-member
     battle_history = getHistory(current_user.username)
 
     return flask.jsonify(battle_history)
@@ -131,7 +131,7 @@ def save_history():
     return {"code": 200, "description": "Successfully submitted."}
 
 
-"""
+""" 
 To avoid using tokens so that react app verifies if user is logged in from flask,
 this is a workaround by rendering each page through flask then react will display
 the corresponding page component.
