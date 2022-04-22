@@ -52,13 +52,12 @@ def index():
     return flask.render_template("index.html")
 
 
-@hearth_routes.route("/battles")
+@hearth_routes.route("/mainUser")
 @login_required
-def battles():
-    """Gets battle history"""
-    battle_history = getHistory(current_user.username)
+def mainUser():
+    user = current_user.username
 
-    return flask.jsonify(battle_history)
+    return flask.jsonify({"username": user})
 
 
 @hearth_routes.route("/users")
@@ -73,10 +72,10 @@ def users():
     return flask.jsonify(userList)
 
 
-@hearth_routes.route("/userBattles", methods=["GET", "POST"])
+@hearth_routes.route("/history", methods=["GET", "POST"])
 @login_required
-def userBattles():
-    """Get battle history for different users"""
+def history():
+    """Get battle history for users"""
     response = flask.request.json
     user = response.get("username")
     battle_history = getHistory(user)
@@ -88,20 +87,15 @@ def userBattles():
 @login_required
 def delete():
     response = flask.request.json
-    id = response.get("id")
-    History.query.filter_by(id=id).delete()
+    selection = response.get("selection")
+    if selection == "all":
+        History.query.filter_by(username=current_user.username).delete()
+    else:
+        History.query.filter_by(id=selection).delete()
     db.session.commit()
+    battle_history = getHistory(current_user.username)
 
-    return flask.redirect(flask.url_for("hearth_routes.battles"))
-
-
-@hearth_routes.route("/deleteAll", methods=["GET", "POST"])
-@login_required
-def deleteAll():
-    History.query.filter_by(username=current_user.username).delete()
-    db.session.commit()
-
-    return flask.redirect(flask.url_for("hearth_routes.battles"))
+    return flask.jsonify(battle_history)
 
 
 @hearth_routes.route("/getcards", methods=["GET", "POST"])

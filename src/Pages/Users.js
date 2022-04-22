@@ -1,77 +1,6 @@
 import './Users.css';
+import ProfileTemplate from './ProfileTemplate';
 import React, { useState, useEffect, useRef } from "react";
-
-function MainProfile(props) {
-    const user = props.value;
-    const [history, setHistory] = useState([]);
-    function getHistory() {
-        var username = { "username": user };
-        fetch('/userBattles', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(username),
-        }).then((response) => (response.json()))
-            .then((data) => { setHistory(data); });
-    }
-    function historyRows() {
-        var rows = [];
-        var i;
-        for (i = 0; i < history.length; i++) {
-            var battle = history[i];
-            var currentRow = (
-                <tr>
-                    <td>
-                        {battle.card1}
-                        <hr />
-                        <p class="battle-card-attack">
-                            Attack: {battle.card1_attack}
-                        </p>
-                        <br></br>
-                        <p class="battle-card-health">
-                            Health: {battle.card1_health}
-                        </p>
-                    </td>
-                    <td>
-                        {battle.card2}
-                        <hr />
-                        <p class="battle-card-attack">
-                            Attack: {battle.card2_attack}
-                        </p>
-                        <br></br>
-                        <p class="battle-card-health">
-                            Health: {battle.card2_health}
-                        </p>
-                    </td>
-                    <td class="battle-card-winner">
-                        <b>{battle.winner}</b>
-                    </td>
-                </tr>
-            );
-            rows.push(currentRow);
-        }
-        return rows;
-    }
-
-    useEffect(() => {
-        getHistory();
-    }, [user]);
-
-
-    return (
-        <div>
-
-            <table>
-                <tr>
-                    <th>Player Card</th>
-                    <th>Opponent Card</th>
-                    <th>Winner</th>
-                </tr>
-                {historyRows()}
-            </table>
-        </div>
-    );
-
-}
 
 function UserProfile() {
     const [users, setUsers] = useState([]);
@@ -109,7 +38,7 @@ function UserProfile() {
             );
         } else {
             return (
-                <MainProfile value={profile} />
+                <ProfileTemplate name={profile} value={false} />
             );
         }
     }
