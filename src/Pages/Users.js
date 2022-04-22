@@ -45,7 +45,7 @@ function UserProfile() {
 
     return (
         <div>
-            <label for="users">Pick a user</label>
+            <label for="users">Pick a user: </label>
             <select class="dd-input-boxes" name="users" id="users" ref={username}>
                 {userList()}
             </select>
