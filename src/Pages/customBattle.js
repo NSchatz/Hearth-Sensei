@@ -39,13 +39,11 @@ function CustomBattle() {
 
     const handleAttack = (e) => {
         setAttackInput({ value: e.target.value })
-        console.log(attackInput)
         setcustomCard({ "img": Image1 })
     }
 
     const handleHealth = (e) => {
         setHealthInput({ value: e.target.value })
-        console.log(healthInput)
         setcustomCard({ "img": Image1 })
     }
 
@@ -75,8 +73,6 @@ function CustomBattle() {
             setisEmpty(false);
             winner = 'Tie';
         }
-        console.log(customResult)
-        // Work in progress
         const recentBattle = {
             "card1": card1Name,
             "card1_attack": Number(card1Attack['value']),
@@ -86,8 +82,12 @@ function CustomBattle() {
             "card2_health": card2Health,
             "winner": winner,
         }
-        submitRecentBattle(recentBattle)
-        console.log(recentBattle)
+        if ((Number(card1Attack['value'] !== undefined && Number(card1Health['value']) !== undefined)) && card2Name !== undefined) {
+            submitRecentBattle(recentBattle);
+        }
+        else {
+            alert("Please select a card for each side");
+        }
     }
     function submitRecentBattle(recentBattle) {
         fetch('/savebattle', {

@@ -1,16 +1,11 @@
 .Landing {
   display: flex;
-  /*height: 100vh;*/
   flex-direction: column;
   background-color: #fdf1e6;
 }
 
 .TopLanding {
-  /*display: flex;*/
   height: 90vh;
-  /*flex-direction: column;
-  /*width: 100vw;*/
-  /*background-color: #fdf1e6;*/
   background-image: linear-gradient(to bottom, rgba(150, 120, 100, 0.7), rgba(150, 120, 100, 0.8)),
     url("../images/ungorotablesetting-lorenzo-minaca.jpg");
   background-position: center;

@@ -53,8 +53,8 @@
 }
 
 .submit-button {
-    background: rgb(7, 208, 235);
-    border: solid 1px rgb(7, 208, 235);
+    background: #0688fa;
+    border: solid 1px #0688fa;
     border-radius: 12px;
     color: white;
     width: 60px;
