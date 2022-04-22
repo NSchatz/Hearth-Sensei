@@ -73,8 +73,6 @@ function CustomBattle() {
             setisEmpty(false);
             winner = 'Tie';
         }
-        console.log(customResult)
-        // Work in progress
         const recentBattle = {
             "card1": card1Name,
             "card1_attack": Number(card1Attack['value']),
