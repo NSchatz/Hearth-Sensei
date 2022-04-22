@@ -1,8 +1,8 @@
 import './Battle.css';
 import Image1 from "../images/blankcard1.png";
-import React, { useState, useEffect, Image } from "react";
+import React, { useState, useEffect, Image } from "react"; /* eslint-disable */
 import { Spinner, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom' /* eslint-disable */
 
 let cards = '/getcards'
 
@@ -30,7 +30,7 @@ function CustomBattle() {
                 setCard3(cardback)
                 setcustomCard({ "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/6c7389262b8a7057aafcf8d75e55f452250ccd8b4e2dfcfd01f1aa8f5f21b17d.png" })
             });
-    }, []);
+    }, []); /* eslint-disable */
 
     function filterCard3(e) {
         const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
@@ -104,7 +104,7 @@ function CustomBattle() {
         let randomCard = randomizer();
         setCard3(randomCard);
     }
-    function handleRandomize() {
+    function handleRandomize() { /* eslint-disable */
         handleRandomOpp();
     }
 

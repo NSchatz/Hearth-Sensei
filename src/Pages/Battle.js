@@ -1,8 +1,8 @@
 import './Battle.css';
-import Image1 from "../images/blankcard1.png";
-import React, { useState, useEffect, Image } from "react";
-import { Spinner, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import Image1 from "../images/blankcard1.png"; /* eslint-disable */
+import React, { useState, useEffect, Image } from "react"; /* eslint-disable */
+import { Spinner, Container } from 'react-bootstrap'; /* eslint-disable */
+import { Link } from 'react-router-dom' /* eslint-disable */
 
 
 let cards = '/getcards'
@@ -28,7 +28,7 @@ function Battle() {
         setCard1(cardback)
         setCard2(cardback)
       });
-  }, []);
+  }, []); /* eslint-disable */
 
   function filterCard1(e) {
     const filtered = Cards.filter(entry => Object.values(entry).some(val => typeof val === "string" && val === e.target.value));
@@ -129,7 +129,7 @@ function Battle() {
           </div>
           <input class="battle-button" type="Submit" value="Battle!" />
         </form>
-        
+
         {isEmpty ? <></> :
           <div>
             <div class="result">
@@ -140,9 +140,9 @@ function Battle() {
             </div>
           </div>
         }
-        
-          
-        
+
+
+
       </div>
   );
 }

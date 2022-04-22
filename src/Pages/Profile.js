@@ -6,8 +6,8 @@ function Profile() {
     const [user, setUser] = useState([]);
 
     function getUser() {
-        fetch('/mainUser').
-            then((response) => response.json()).
+        fetch('/mainUser'). /* eslint-disable */
+            then((response) => response.json()). /* eslint-disable */
             then((data) => setUser(data));
     }
 
